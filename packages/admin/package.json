@@ -42,7 +42,7 @@
     "@uppy/tus": "^1.9.2",
     "@wdp/lib": "1.0.0",
     "babel-loader": "^8.0.0",
-    "cookie": "^0.4.1",
+    "cookie": "^0.5.0",
     "csstype": "^2.6.2",
     "date-fns": "^2.25.0",
     "downshift": "^6.1.7",
