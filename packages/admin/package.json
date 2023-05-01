@@ -35,7 +35,7 @@
     "@spissvinkel/alea": "^1.2.1",
     "@tanstack/react-table": "^8.5.15",
     "@uppy/core": "^1.20.1",
-    "@uppy/drag-drop": "^1.4.31",
+    "@uppy/drag-drop": "^3.0.2",
     "@uppy/drop-target": "^0.2.4",
     "@uppy/file-input": "^1.5.2",
     "@uppy/react": "^1.12.2",

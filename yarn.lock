@@ -4048,6 +4048,14 @@
     "@uppy/utils" "^3.6.2"
     preact "8.2.9"
 
+"@uppy/drag-drop@^3.0.2":
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/@uppy/drag-drop/-/drag-drop-3.0.2.tgz#9047f549b1fe7c52eda2eaf29e00406fccd6790d"
+  integrity sha512-zUOEYuUBtO1kfFbiwq24ZuDninu17IWkTTyV1covARm9YiZkrqG11n6VsTe/SQbXJxYh0kAttKIVP+QK1/n48g==
+  dependencies:
+    "@uppy/utils" "^5.3.0"
+    preact "^10.5.13"
+
 "@uppy/drop-target@^0.2.4":
   version "0.2.4"
   resolved "https://registry.yarnpkg.com/@uppy/drop-target/-/drop-target-0.2.4.tgz#92e4ffa0d34781a37760e98850262c14b8718c2d"
@@ -4141,6 +4149,13 @@
   integrity sha512-wGTZma7eywIojfuE1vXlT0fxPSpmCRMkfgFWYc+6TL2FfGqWInmePoB+yal6/M2AnjeKHz6XYMhIpZkjOxFvcw==
   dependencies:
     abortcontroller-polyfill "^1.4.0"
+    lodash.throttle "^4.1.1"
+
+"@uppy/utils@^5.3.0":
+  version "5.3.0"
+  resolved "https://registry.yarnpkg.com/@uppy/utils/-/utils-5.3.0.tgz#60803328536da73a11c8e747ed365c903b6a5f7e"
+  integrity sha512-tPW+HtRkjanFQAa/XD2e6kjJ7ZeMHtVxEVeBeRtKTnltsCA9kNF2gDwxtUVPEWyLrKzW+CvRm60NDiOKaWUuww==
+  dependencies:
     lodash.throttle "^4.1.1"
 
 "@webassemblyjs/ast@1.11.1":
@@ -12214,6 +12229,11 @@ preact@8.2.9:
   version "8.2.9"
   resolved "https://registry.yarnpkg.com/preact/-/preact-8.2.9.tgz#813ba9dd45e5d97c5ea0d6c86d375b3be711cc40"
   integrity sha512-ThuGXBmJS3VsT+jIP+eQufD3L8pRw/PY3FoCys6O9Pu6aF12Pn9zAJDX99TfwRAFOCEKm/P0lwiPTbqKMJp0fA==
+
+preact@^10.5.13:
+  version "10.13.2"
+  resolved "https://registry.yarnpkg.com/preact/-/preact-10.13.2.tgz#2c40c73d57248b57234c4ae6cd9ab9d8186ebc0a"
+  integrity sha512-q44QFLhOhty2Bd0Y46fnYW0gD/cbVM9dUVtNTDKPcdXSMA7jfY+Jpd6rk3GB0lcQss0z5s/6CmVP0Z/hV+g6pw==
 
 prelude-ls@^1.2.1:
   version "1.2.1"
