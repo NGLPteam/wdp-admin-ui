@@ -72,7 +72,7 @@ function ItemContributionList({
     nameColumn === "item" ? collectionNameColumn : contributorNameColumn,
     ModelColumns.StringColumn<ItemContributionNode>({
       header: () => <>{t("lists.role_column")}</>,
-      id: "role",
+      id: "contributionRole.label",
     }),
     ModelColumns.CreatedAtColumn<ItemContributionNode>(),
   ];
@@ -129,7 +129,9 @@ const fragment = graphql`
       slug
       createdAt
       updatedAt
-      role
+      contributionRole {
+        label
+      }
       contributor {
         __typename
         ... on Sluggable {

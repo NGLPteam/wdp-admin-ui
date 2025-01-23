@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<7aa5f6ed4c181f35fbe2de662ec58a42>>
+ * @generated SignedSource<<a004db5f945e613fcd44bc6b012ed6a2>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -19,7 +19,6 @@ export type CollectionContributionEditDrawerQuery$data = {
       readonly title: string;
     };
     readonly id: string;
-    readonly role: string | null | undefined;
     readonly " $fragmentSpreads": FragmentRefs<"ContributionUpdateFormFragment">;
   } | null | undefined;
 };
@@ -54,42 +53,35 @@ v3 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
-  "name": "role",
-  "storageKey": null
-},
-v4 = {
-  "alias": null,
-  "args": null,
-  "kind": "ScalarField",
   "name": "title",
   "storageKey": null
 },
-v5 = [
-  (v4/*: any*/),
+v4 = [
+  (v3/*: any*/),
   (v2/*: any*/)
 ],
-v6 = {
+v5 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
   "name": "__typename",
   "storageKey": null
 },
-v7 = {
+v6 = {
   "alias": "contributionId",
   "args": null,
   "kind": "ScalarField",
   "name": "id",
   "storageKey": null
 },
-v8 = {
+v7 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
   "name": "slug",
   "storageKey": null
 },
-v9 = {
+v8 = {
   "alias": null,
   "args": null,
   "concreteType": null,
@@ -97,11 +89,11 @@ v9 = {
   "name": "contributor",
   "plural": false,
   "selections": [
-    (v6/*: any*/),
+    (v5/*: any*/),
     {
       "kind": "InlineFragment",
       "selections": [
-        (v8/*: any*/),
+        (v7/*: any*/),
         {
           "alias": null,
           "args": null,
@@ -116,7 +108,7 @@ v9 = {
     {
       "kind": "InlineFragment",
       "selections": [
-        (v8/*: any*/),
+        (v7/*: any*/),
         {
           "alias": null,
           "args": null,
@@ -146,7 +138,7 @@ v9 = {
   ],
   "storageKey": null
 },
-v10 = {
+v9 = {
   "alias": null,
   "args": null,
   "concreteType": "ControlledVocabularyItem",
@@ -165,7 +157,7 @@ v10 = {
   ],
   "storageKey": null
 },
-v11 = [
+v10 = [
   {
     "alias": null,
     "args": null,
@@ -174,18 +166,18 @@ v11 = [
     "storageKey": null
   }
 ],
-v12 = {
+v11 = {
   "kind": "InlineFragment",
   "selections": [
     {
       "kind": "InlineFragment",
-      "selections": (v11/*: any*/),
+      "selections": (v10/*: any*/),
       "type": "CollectionContribution",
       "abstractKey": null
     },
     {
       "kind": "InlineFragment",
-      "selections": (v11/*: any*/),
+      "selections": (v10/*: any*/),
       "type": "ItemContribution",
       "abstractKey": null
     }
@@ -214,7 +206,6 @@ return {
             "name": "ContributionUpdateFormFragment"
           },
           (v2/*: any*/),
-          (v3/*: any*/),
           {
             "alias": null,
             "args": null,
@@ -223,7 +214,7 @@ return {
             "name": "collection",
             "plural": false,
             "selections": [
-              (v4/*: any*/)
+              (v3/*: any*/)
             ],
             "storageKey": null
           }
@@ -249,7 +240,6 @@ return {
         "plural": false,
         "selections": [
           (v2/*: any*/),
-          (v3/*: any*/),
           {
             "alias": null,
             "args": null,
@@ -257,20 +247,20 @@ return {
             "kind": "LinkedField",
             "name": "collection",
             "plural": false,
-            "selections": (v5/*: any*/),
+            "selections": (v4/*: any*/),
             "storageKey": null
           },
           {
             "kind": "InlineFragment",
             "selections": [
-              (v6/*: any*/),
+              (v5/*: any*/),
               {
                 "kind": "InlineFragment",
                 "selections": [
-                  (v7/*: any*/),
+                  (v6/*: any*/),
+                  (v8/*: any*/),
                   (v9/*: any*/),
-                  (v10/*: any*/),
-                  (v12/*: any*/)
+                  (v11/*: any*/)
                 ],
                 "type": "CollectionContribution",
                 "abstractKey": null
@@ -278,8 +268,8 @@ return {
               {
                 "kind": "InlineFragment",
                 "selections": [
-                  (v7/*: any*/),
-                  (v9/*: any*/),
+                  (v6/*: any*/),
+                  (v8/*: any*/),
                   {
                     "alias": null,
                     "args": null,
@@ -287,12 +277,12 @@ return {
                     "kind": "LinkedField",
                     "name": "item",
                     "plural": false,
-                    "selections": (v5/*: any*/),
+                    "selections": (v4/*: any*/),
                     "storageKey": null
                   },
-                  (v4/*: any*/),
-                  (v10/*: any*/),
-                  (v12/*: any*/)
+                  (v3/*: any*/),
+                  (v9/*: any*/),
+                  (v11/*: any*/)
                 ],
                 "type": "ItemContribution",
                 "abstractKey": null
@@ -307,16 +297,16 @@ return {
     ]
   },
   "params": {
-    "cacheID": "c4b8c57172470db96b8d5b97adc6264d",
+    "cacheID": "a24cc0c80adc5b43dbb036de908b81b3",
     "id": null,
     "metadata": {},
     "name": "CollectionContributionEditDrawerQuery",
     "operationKind": "query",
-    "text": "query CollectionContributionEditDrawerQuery(\n  $collectionContributionSlug: Slug!\n) {\n  collectionContribution(slug: $collectionContributionSlug) {\n    ...ContributionUpdateFormFragment\n    id\n    role\n    collection {\n      title\n      id\n    }\n  }\n}\n\nfragment ContributionUpdateFormFieldsFragment on AnyContribution {\n  __isAnyContribution: __typename\n  ... on CollectionContribution {\n    position\n  }\n  ... on ItemContribution {\n    position\n  }\n}\n\nfragment ContributionUpdateFormFragment on AnyContribution {\n  __isAnyContribution: __typename\n  __typename\n  ... on CollectionContribution {\n    contributionId: id\n    contributor {\n      __typename\n      ... on OrganizationContributor {\n        slug\n        legalName\n      }\n      ... on PersonContributor {\n        slug\n        givenName\n        familyName\n      }\n      ... on Node {\n        __isNode: __typename\n        id\n      }\n    }\n    collection {\n      title\n      id\n    }\n    contributionRole {\n      id\n      label\n    }\n    ...ContributionUpdateFormFieldsFragment\n  }\n  ... on ItemContribution {\n    contributionId: id\n    contributor {\n      __typename\n      ... on OrganizationContributor {\n        slug\n        legalName\n      }\n      ... on PersonContributor {\n        slug\n        givenName\n        familyName\n      }\n      ... on Node {\n        __isNode: __typename\n        id\n      }\n    }\n    item {\n      title\n      id\n    }\n    title\n    contributionRole {\n      id\n      label\n    }\n    ...ContributionUpdateFormFieldsFragment\n  }\n}\n"
+    "text": "query CollectionContributionEditDrawerQuery(\n  $collectionContributionSlug: Slug!\n) {\n  collectionContribution(slug: $collectionContributionSlug) {\n    ...ContributionUpdateFormFragment\n    id\n    collection {\n      title\n      id\n    }\n  }\n}\n\nfragment ContributionUpdateFormFieldsFragment on AnyContribution {\n  __isAnyContribution: __typename\n  ... on CollectionContribution {\n    position\n  }\n  ... on ItemContribution {\n    position\n  }\n}\n\nfragment ContributionUpdateFormFragment on AnyContribution {\n  __isAnyContribution: __typename\n  __typename\n  ... on CollectionContribution {\n    contributionId: id\n    contributor {\n      __typename\n      ... on OrganizationContributor {\n        slug\n        legalName\n      }\n      ... on PersonContributor {\n        slug\n        givenName\n        familyName\n      }\n      ... on Node {\n        __isNode: __typename\n        id\n      }\n    }\n    collection {\n      title\n      id\n    }\n    contributionRole {\n      id\n      label\n    }\n    ...ContributionUpdateFormFieldsFragment\n  }\n  ... on ItemContribution {\n    contributionId: id\n    contributor {\n      __typename\n      ... on OrganizationContributor {\n        slug\n        legalName\n      }\n      ... on PersonContributor {\n        slug\n        givenName\n        familyName\n      }\n      ... on Node {\n        __isNode: __typename\n        id\n      }\n    }\n    item {\n      title\n      id\n    }\n    title\n    contributionRole {\n      id\n      label\n    }\n    ...ContributionUpdateFormFieldsFragment\n  }\n}\n"
   }
 };
 })();
 
-(node as any).hash = "70cbcb659da322719a0814a7db237020";
+(node as any).hash = "56870ad03770610dac6dc8d9b73da517";
 
 export default node;

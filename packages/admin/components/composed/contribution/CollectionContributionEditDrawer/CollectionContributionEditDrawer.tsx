@@ -78,7 +78,6 @@ const query = graphql`
     collectionContribution(slug: $collectionContributionSlug) {
       ...ContributionUpdateFormFragment
       id
-      role
       collection {
         title
       }
