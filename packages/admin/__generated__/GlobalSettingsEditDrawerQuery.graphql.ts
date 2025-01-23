@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<3328d4617153bf5348b525784b0b4f28>>
+ * @generated SignedSource<<709975db03e1dafda2b2e6237b3f1dbd>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -21,7 +21,22 @@ export type GlobalSettingsEditDrawerQuery = {
   variables: GlobalSettingsEditDrawerQuery$variables;
 };
 
-const node: ConcreteRequest = {
+const node: ConcreteRequest = (function(){
+var v0 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
+  "name": "id",
+  "storageKey": null
+},
+v1 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
+  "name": "label",
+  "storageKey": null
+};
+return {
   "fragment": {
     "argumentDefinitions": [],
     "kind": "Fragment",
@@ -222,24 +237,83 @@ const node: ConcreteRequest = {
           {
             "alias": null,
             "args": null,
-            "kind": "ScalarField",
-            "name": "id",
+            "concreteType": "ContributionRoleConfiguration",
+            "kind": "LinkedField",
+            "name": "contributionRoles",
+            "plural": false,
+            "selections": [
+              {
+                "alias": null,
+                "args": null,
+                "concreteType": "ControlledVocabulary",
+                "kind": "LinkedField",
+                "name": "controlledVocabulary",
+                "plural": false,
+                "selections": [
+                  (v0/*: any*/),
+                  {
+                    "alias": null,
+                    "args": null,
+                    "kind": "ScalarField",
+                    "name": "name",
+                    "storageKey": null
+                  },
+                  {
+                    "alias": null,
+                    "args": null,
+                    "concreteType": "ControlledVocabularyItem",
+                    "kind": "LinkedField",
+                    "name": "items",
+                    "plural": true,
+                    "selections": [
+                      (v0/*: any*/),
+                      (v1/*: any*/),
+                      {
+                        "alias": null,
+                        "args": null,
+                        "kind": "ScalarField",
+                        "name": "unselectable",
+                        "storageKey": null
+                      }
+                    ],
+                    "storageKey": null
+                  }
+                ],
+                "storageKey": null
+              },
+              {
+                "alias": null,
+                "args": null,
+                "concreteType": "ControlledVocabularyItem",
+                "kind": "LinkedField",
+                "name": "defaultItem",
+                "plural": false,
+                "selections": [
+                  (v0/*: any*/),
+                  (v1/*: any*/)
+                ],
+                "storageKey": null
+              },
+              (v0/*: any*/)
+            ],
             "storageKey": null
-          }
+          },
+          (v0/*: any*/)
         ],
         "storageKey": null
       }
     ]
   },
   "params": {
-    "cacheID": "58f88ea83ff359cfd07ae6d6537ae980",
+    "cacheID": "5ac62e11d99ac8a6bf888f42c12aa7f4",
     "id": null,
     "metadata": {},
     "name": "GlobalSettingsEditDrawerQuery",
     "operationKind": "query",
-    "text": "query GlobalSettingsEditDrawerQuery {\n  globalConfiguration {\n    ...GlobalSettingsEditFormFragment\n    id\n  }\n}\n\nfragment GlobalSettingsEditFormFragment on GlobalConfiguration {\n  site {\n    providerName\n    installationName\n    installationHomePageCopy\n    footer {\n      description\n      copyrightStatement\n    }\n    logoMode\n  }\n  theme {\n    color\n    font\n  }\n  entities {\n    suppressExternalLinks\n  }\n  logo {\n    ...SiteLogoUploadFragment\n  }\n}\n\nfragment SiteLogoUploadFragment on SiteLogoAttachment {\n  originalFilename\n  storage\n  original {\n    url\n    alt\n  }\n}\n"
+    "text": "query GlobalSettingsEditDrawerQuery {\n  globalConfiguration {\n    ...GlobalSettingsEditFormFragment\n    id\n  }\n}\n\nfragment GlobalSettingsEditFormFragment on GlobalConfiguration {\n  site {\n    providerName\n    installationName\n    installationHomePageCopy\n    footer {\n      description\n      copyrightStatement\n    }\n    logoMode\n  }\n  theme {\n    color\n    font\n  }\n  entities {\n    suppressExternalLinks\n  }\n  logo {\n    ...SiteLogoUploadFragment\n  }\n  contributionRoles {\n    controlledVocabulary {\n      id\n      name\n      items {\n        id\n        label\n        unselectable\n      }\n    }\n    defaultItem {\n      id\n      label\n    }\n    id\n  }\n}\n\nfragment SiteLogoUploadFragment on SiteLogoAttachment {\n  originalFilename\n  storage\n  original {\n    url\n    alt\n  }\n}\n"
   }
 };
+})();
 
 (node as any).hash = "14c05f979e57359ae35bfe24eb0c1ce9";
 

@@ -402,7 +402,10 @@
         "initial_ordering_description": "Set which ordering should be displayed on the landing page of {{name}}.",
         "entity_settings": "Entity Settings",
         "supress_external_links": "Suppress external links",
-        "supress_external_links_description": "Hide external links in metadata."
+        "supress_external_links_description": "Hide external links in metadata.",
+        "controlled_vocabularies": "Controlled Vocabularies",
+        "contribution_roles": "Contribution Roles",
+        "default_contribution_role": "Default Role"
       },
       "validation": {
         "year": "Must be a four digit year",

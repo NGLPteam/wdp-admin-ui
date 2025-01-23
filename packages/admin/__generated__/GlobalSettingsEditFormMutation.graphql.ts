@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<015a57e97029a59c1402dd76b041dd24>>
+ * @generated SignedSource<<ea67900444e9901e8ed966ed45753cd1>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -68,6 +68,21 @@ export type GlobalSettingsEditFormMutation$variables = {
 export type GlobalSettingsEditFormMutation$data = {
   readonly updateGlobalConfiguration: {
     readonly globalConfiguration: {
+      readonly contributionRoles: {
+        readonly controlledVocabulary: {
+          readonly id: string;
+          readonly items: ReadonlyArray<{
+            readonly id: string;
+            readonly label: string;
+            readonly unselectable: boolean;
+          }>;
+          readonly name: string;
+        };
+        readonly defaultItem: {
+          readonly id: string;
+          readonly label: string;
+        };
+      };
       readonly entities: {
         readonly suppressExternalLinks: boolean;
       };
@@ -217,6 +232,72 @@ v4 = {
   "storageKey": null
 },
 v5 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
+  "name": "id",
+  "storageKey": null
+},
+v6 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
+  "name": "label",
+  "storageKey": null
+},
+v7 = {
+  "alias": null,
+  "args": null,
+  "concreteType": "ControlledVocabulary",
+  "kind": "LinkedField",
+  "name": "controlledVocabulary",
+  "plural": false,
+  "selections": [
+    (v5/*: any*/),
+    {
+      "alias": null,
+      "args": null,
+      "kind": "ScalarField",
+      "name": "name",
+      "storageKey": null
+    },
+    {
+      "alias": null,
+      "args": null,
+      "concreteType": "ControlledVocabularyItem",
+      "kind": "LinkedField",
+      "name": "items",
+      "plural": true,
+      "selections": [
+        (v5/*: any*/),
+        (v6/*: any*/),
+        {
+          "alias": null,
+          "args": null,
+          "kind": "ScalarField",
+          "name": "unselectable",
+          "storageKey": null
+        }
+      ],
+      "storageKey": null
+    }
+  ],
+  "storageKey": null
+},
+v8 = {
+  "alias": null,
+  "args": null,
+  "concreteType": "ControlledVocabularyItem",
+  "kind": "LinkedField",
+  "name": "defaultItem",
+  "plural": false,
+  "selections": [
+    (v5/*: any*/),
+    (v6/*: any*/)
+  ],
+  "storageKey": null
+},
+v9 = {
   "kind": "InlineFragment",
   "selections": [
     {
@@ -298,7 +379,20 @@ return {
             "selections": [
               (v2/*: any*/),
               (v3/*: any*/),
-              (v4/*: any*/)
+              (v4/*: any*/),
+              {
+                "alias": null,
+                "args": null,
+                "concreteType": "ContributionRoleConfiguration",
+                "kind": "LinkedField",
+                "name": "contributionRoles",
+                "plural": false,
+                "selections": [
+                  (v7/*: any*/),
+                  (v8/*: any*/)
+                ],
+                "storageKey": null
+              }
             ],
             "storageKey": null
           },
@@ -306,7 +400,7 @@ return {
             "kind": "InlineDataFragmentSpread",
             "name": "MutationForm_mutationErrors",
             "selections": [
-              (v5/*: any*/)
+              (v9/*: any*/)
             ],
             "args": null,
             "argumentDefinitions": []
@@ -346,30 +440,38 @@ return {
               {
                 "alias": null,
                 "args": null,
-                "kind": "ScalarField",
-                "name": "id",
+                "concreteType": "ContributionRoleConfiguration",
+                "kind": "LinkedField",
+                "name": "contributionRoles",
+                "plural": false,
+                "selections": [
+                  (v7/*: any*/),
+                  (v8/*: any*/),
+                  (v5/*: any*/)
+                ],
                 "storageKey": null
-              }
+              },
+              (v5/*: any*/)
             ],
             "storageKey": null
           },
-          (v5/*: any*/)
+          (v9/*: any*/)
         ],
         "storageKey": null
       }
     ]
   },
   "params": {
-    "cacheID": "8e9b390cc043420e1ce6cd9768fd2f75",
+    "cacheID": "33ec0adb0568e2a7c2561256051d45ef",
     "id": null,
     "metadata": {},
     "name": "GlobalSettingsEditFormMutation",
     "operationKind": "mutation",
-    "text": "mutation GlobalSettingsEditFormMutation(\n  $input: UpdateGlobalConfigurationInput!\n) {\n  updateGlobalConfiguration(input: $input) {\n    globalConfiguration {\n      site {\n        providerName\n        installationName\n        installationHomePageCopy\n        footer {\n          description\n          copyrightStatement\n        }\n        logoMode\n      }\n      theme {\n        color\n        font\n      }\n      entities {\n        suppressExternalLinks\n      }\n      id\n    }\n    ...MutationForm_mutationErrors\n  }\n}\n\nfragment MutationForm_mutationErrors on StandardMutationPayload {\n  __isStandardMutationPayload: __typename\n  attributeErrors {\n    path\n    type\n    messages\n  }\n  globalErrors {\n    message\n  }\n}\n"
+    "text": "mutation GlobalSettingsEditFormMutation(\n  $input: UpdateGlobalConfigurationInput!\n) {\n  updateGlobalConfiguration(input: $input) {\n    globalConfiguration {\n      site {\n        providerName\n        installationName\n        installationHomePageCopy\n        footer {\n          description\n          copyrightStatement\n        }\n        logoMode\n      }\n      theme {\n        color\n        font\n      }\n      entities {\n        suppressExternalLinks\n      }\n      contributionRoles {\n        controlledVocabulary {\n          id\n          name\n          items {\n            id\n            label\n            unselectable\n          }\n        }\n        defaultItem {\n          id\n          label\n        }\n        id\n      }\n      id\n    }\n    ...MutationForm_mutationErrors\n  }\n}\n\nfragment MutationForm_mutationErrors on StandardMutationPayload {\n  __isStandardMutationPayload: __typename\n  attributeErrors {\n    path\n    type\n    messages\n  }\n  globalErrors {\n    message\n  }\n}\n"
   }
 };
 })();
 
-(node as any).hash = "d94b3f86d5babafa2f1e20d74db38348";
+(node as any).hash = "732fcec26f8cf2f15251c269c29545df";
 
 export default node;

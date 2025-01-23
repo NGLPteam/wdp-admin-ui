@@ -37,3 +37,4 @@ export { default as EntitySelector } from "./EntitySelector";
 export { default as SiteLogoUpload } from "./FileUpload/patterns/SiteLogoUpload";
 export { default as FileImageUpload } from "./FileUpload/patterns/FileImageUpload";
 export { default as ContributionRoleSelect } from "./ContributionRoleSelect";
+export { default as ControlledVocabularySelect } from "./ControlledVocabularySelect";
