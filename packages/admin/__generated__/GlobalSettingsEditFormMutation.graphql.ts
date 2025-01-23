@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<9435cb6437a1605a4719a3f8af930680>>
+ * @generated SignedSource<<015a57e97029a59c1402dd76b041dd24>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -15,12 +15,18 @@ export type UploadStorage = "CACHE" | "%future added value";
 export type UpdateGlobalConfigurationInput = {
   clearLogo?: boolean | null | undefined;
   clientMutationId?: string | null | undefined;
+  contributionRoles?: ContributionRoleConfigurationInput | null | undefined;
   entities?: EntitiesSettingsInput | null | undefined;
   institution?: InstitutionSettingsInput | null | undefined;
   logo?: UploadedFileInput | null | undefined;
   logoMetadata?: ImageMetadataInput | null | undefined;
   site?: SiteSettingsInput | null | undefined;
   theme?: ThemeSettingsInput | null | undefined;
+};
+export type ContributionRoleConfigurationInput = {
+  controlledVocabularyId: string;
+  defaultItemId: string;
+  otherItemId?: string | null | undefined;
 };
 export type EntitiesSettingsInput = {
   suppressExternalLinks?: boolean | null | undefined;

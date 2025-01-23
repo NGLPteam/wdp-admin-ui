@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<d8b5cbb51abd5b5ef00fbdb9ff07138c>>
+ * @generated SignedSource<<ad1091f8f73c0be637817b719c9560aa>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -14,7 +14,7 @@ export type UpdateContributionInput = {
   clientMutationId?: string | null | undefined;
   contributionId: string;
   metadata?: ContributionMetadataInput | null | undefined;
-  role?: string | null | undefined;
+  position?: number | null | undefined;
 };
 export type ContributionMetadataInput = {
   affiliation?: string | null | undefined;
