@@ -391,6 +391,7 @@
         "logo_settings_with_text": "Display with Installation Name",
         "logo_settings_without_text": "Display without Installation Name",
         "position": "Position",
+        "position_description": "List this contributor in a certain order among contributors with the same role.",
         "select_placeholder": "Select an option",
         "typeahead_placeholder": "Start typing or select an option",
         "typeahead_no_options": "No options are available",
