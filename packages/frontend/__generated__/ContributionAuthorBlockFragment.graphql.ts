@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<bccccedfe7f7d4e13dd3a8dae5e773ad>>
+ * @generated SignedSource<<beb4a977d4eba36b126eadd23cc97c7f>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -16,6 +16,9 @@ export type ContributionAuthorBlockFragment$data = {
   readonly collection?: {
     readonly slug: string;
   };
+  readonly contributionRole: {
+    readonly label: string;
+  };
   readonly contributor: {
     readonly __typename: "PersonContributor";
     readonly affiliation?: string | null | undefined;
@@ -31,7 +34,7 @@ export type ContributionAuthorBlockFragment$data = {
   readonly item?: {
     readonly slug: string;
   };
-  readonly role: string | null | undefined;
+  readonly roleLabel: string | null | undefined;
   readonly " $fragmentType": "ContributionAuthorBlockFragment";
 };
 export type ContributionAuthorBlockFragment$key = {
@@ -109,7 +112,25 @@ return {
       "alias": null,
       "args": null,
       "kind": "ScalarField",
-      "name": "role",
+      "name": "roleLabel",
+      "storageKey": null
+    },
+    {
+      "alias": null,
+      "args": null,
+      "concreteType": "ControlledVocabularyItem",
+      "kind": "LinkedField",
+      "name": "contributionRole",
+      "plural": false,
+      "selections": [
+        {
+          "alias": null,
+          "args": null,
+          "kind": "ScalarField",
+          "name": "label",
+          "storageKey": null
+        }
+      ],
       "storageKey": null
     },
     {
@@ -199,6 +220,6 @@ return {
 };
 })();
 
-(node as any).hash = "f3b6a68100a97ffee12ba1a3eea97375";
+(node as any).hash = "ee7333ec421a578b3e87125bd3360f7d";
 
 export default node;

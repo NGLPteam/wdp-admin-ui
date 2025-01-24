@@ -35,8 +35,9 @@ export default function ContributorsList({
     // Filter contributions by role, or return all contributions
     return filterRole
       ? contributionData?.nodes?.filter(
-          ({ role }: Node) =>
-            role && role.toLowerCase() === filterRole.toLocaleLowerCase(),
+          ({ roleLabel }: Node) =>
+            roleLabel &&
+            roleLabel.toLowerCase() === filterRole.toLocaleLowerCase(),
         )
       : contributionData?.nodes || [];
   }, [contributionData, filterRole]);
@@ -96,7 +97,10 @@ const fragment = graphql`
   fragment ContributorsListFragment on Paginated {
     ... on ItemContributionConnection {
       nodes {
-        role
+        roleLabel
+        contributionRole {
+          label
+        }
         contributor {
           ... on Sluggable {
             slug
@@ -107,7 +111,10 @@ const fragment = graphql`
     }
     ... on CollectionContributionConnection {
       nodes {
-        role
+        roleLabel
+        contributionRole {
+          label
+        }
         contributor {
           ... on Sluggable {
             slug

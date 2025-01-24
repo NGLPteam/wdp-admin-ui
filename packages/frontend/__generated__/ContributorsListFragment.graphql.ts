@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<8d0dc512b8b17a814059a0d3b517516c>>
+ * @generated SignedSource<<cc7757fbd01f1c379b06e13a6616f3c2>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -12,11 +12,14 @@ import { Fragment, ReaderFragment } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
 export type ContributorsListFragment$data = {
   readonly nodes?: ReadonlyArray<{
+    readonly contributionRole: {
+      readonly label: string;
+    };
     readonly contributor: {
       readonly slug?: string;
       readonly " $fragmentSpreads": FragmentRefs<"ContributorNameFragment">;
     };
-    readonly role: string | null | undefined;
+    readonly roleLabel: string | null | undefined;
   }>;
   readonly " $fragmentType": "ContributorsListFragment";
 };
@@ -31,7 +34,25 @@ var v0 = [
     "alias": null,
     "args": null,
     "kind": "ScalarField",
-    "name": "role",
+    "name": "roleLabel",
+    "storageKey": null
+  },
+  {
+    "alias": null,
+    "args": null,
+    "concreteType": "ControlledVocabularyItem",
+    "kind": "LinkedField",
+    "name": "contributionRole",
+    "plural": false,
+    "selections": [
+      {
+        "alias": null,
+        "args": null,
+        "kind": "ScalarField",
+        "name": "label",
+        "storageKey": null
+      }
+    ],
     "storageKey": null
   },
   {
@@ -111,6 +132,6 @@ return {
 };
 })();
 
-(node as any).hash = "8c268e8430830d99abdb5a99b8b3f218";
+(node as any).hash = "46774f0bd08c6ae869cbdd128a97d420";
 
 export default node;

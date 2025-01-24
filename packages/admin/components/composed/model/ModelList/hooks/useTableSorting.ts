@@ -16,7 +16,7 @@ export default function useTableSorting() {
       : undefined;
 
     return order ? ([order] as ColumnSort[]) : [];
-  }, []);
+  }, [router]);
 
   const [sorting, setSorting] = useState<SortingState>(initialSortBy);
 

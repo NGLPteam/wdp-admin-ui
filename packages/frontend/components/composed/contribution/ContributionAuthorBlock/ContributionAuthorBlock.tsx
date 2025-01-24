@@ -56,8 +56,8 @@ export default function ContributionAuthorBlock({ data }: Props) {
             <>
               <div className={styles.roles}>
                 <DotList className="t-copy-sm t-copy-lighter">
-                  {contribution.role && (
-                    <li>{capitalize(contribution.role)}</li>
+                  {contribution.roleLabel && (
+                    <li>{capitalize(contribution.roleLabel)}</li>
                   )}
                   {contributor.title && <li>{contributor.title}</li>}
                   {contributor.affiliation && (
@@ -87,7 +87,10 @@ type Props = {
 const fragment = graphql`
   fragment ContributionAuthorBlockFragment on Contribution {
     affiliation
-    role
+    roleLabel
+    contributionRole {
+      label
+    }
     ... on CollectionContribution {
       collection {
         slug

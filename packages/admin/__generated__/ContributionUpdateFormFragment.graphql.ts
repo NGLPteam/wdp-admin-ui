@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<f80051ad45844442490774eee760781d>>
+ * @generated SignedSource<<9bd672bbab95d241c6f930c32227397c>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -16,6 +16,10 @@ export type ContributionUpdateFormFragment$data = {
     readonly title: string;
   };
   readonly contributionId: string;
+  readonly contributionRole: {
+    readonly id: string;
+    readonly label: string;
+  };
   readonly contributor: {
     readonly __typename: "OrganizationContributor";
     readonly legalName: string | null | undefined;
@@ -35,6 +39,10 @@ export type ContributionUpdateFormFragment$data = {
 } | {
   readonly __typename: "ItemContribution";
   readonly contributionId: string;
+  readonly contributionRole: {
+    readonly id: string;
+    readonly label: string;
+  };
   readonly contributor: {
     readonly __typename: "OrganizationContributor";
     readonly legalName: string | null | undefined;
@@ -148,6 +156,31 @@ v5 = [
   (v4/*: any*/)
 ],
 v6 = {
+  "alias": null,
+  "args": null,
+  "concreteType": "ControlledVocabularyItem",
+  "kind": "LinkedField",
+  "name": "contributionRole",
+  "plural": false,
+  "selections": [
+    {
+      "alias": null,
+      "args": null,
+      "kind": "ScalarField",
+      "name": "id",
+      "storageKey": null
+    },
+    {
+      "alias": null,
+      "args": null,
+      "kind": "ScalarField",
+      "name": "label",
+      "storageKey": null
+    }
+  ],
+  "storageKey": null
+},
+v7 = {
   "args": null,
   "kind": "FragmentSpread",
   "name": "ContributionUpdateFormFieldsFragment"
@@ -174,7 +207,8 @@ return {
           "selections": (v5/*: any*/),
           "storageKey": null
         },
-        (v6/*: any*/)
+        (v6/*: any*/),
+        (v7/*: any*/)
       ],
       "type": "CollectionContribution",
       "abstractKey": null
@@ -195,7 +229,8 @@ return {
           "storageKey": null
         },
         (v4/*: any*/),
-        (v6/*: any*/)
+        (v6/*: any*/),
+        (v7/*: any*/)
       ],
       "type": "ItemContribution",
       "abstractKey": null
@@ -206,6 +241,6 @@ return {
 };
 })();
 
-(node as any).hash = "ff60dd1a3f3568501b6aff3c25d7de8b";
+(node as any).hash = "878fdcf2064b4adcea2a477b7f86ff56";
 
 export default node;

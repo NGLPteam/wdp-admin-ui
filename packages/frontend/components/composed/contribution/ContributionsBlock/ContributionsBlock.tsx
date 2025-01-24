@@ -27,7 +27,8 @@ const ContributionsBlock = ({ data, filterRole, ...baseProps }: Props) => {
   const contributions = contributionData?.nodes?.filter(
     (node: Node) =>
       !filterRole ||
-      (node.role && node.role.toLowerCase() === filterRole.toLowerCase()),
+      (node.roleLabel &&
+        node.roleLabel.toLowerCase() === filterRole.toLowerCase()),
   );
 
   return (
@@ -56,7 +57,10 @@ const fragment = graphql`
     ... on ItemContributionConnection {
       nodes {
         slug
-        role
+        roleLabel
+        contributionRole {
+          label
+        }
         contributor {
           ... on PersonContributor {
             image {
@@ -76,7 +80,10 @@ const fragment = graphql`
     ... on CollectionContributionConnection {
       nodes {
         slug
-        role
+        roleLabel
+        contributionRole {
+          label
+        }
         contributor {
           ... on PersonContributor {
             image {

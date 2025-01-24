@@ -37,6 +37,11 @@ export default function ContributionUpdateForm({
       break;
   }
 
+  const role =
+    maybeContribution.__typename !== "%other"
+      ? maybeContribution.contributionRole?.label
+      : "";
+
   /* eslint-disable max-len */
   const defaultValues =
     useMaybeFragment<ContributionUpdateFormFieldsFragment$key>(
@@ -75,7 +80,18 @@ export default function ContributionUpdateForm({
           disabled
           defaultValue={title}
         />
-        <Forms.Input label="forms.fields.role" {...register("role")} />
+        <Forms.Input
+          name=""
+          label="forms.fields.role"
+          disabled
+          defaultValue={role}
+        />
+        <Forms.Input
+          type="number"
+          label="forms.fields.position"
+          description="forms.fields.position_description"
+          {...register("position", { valueAsNumber: true })}
+        />
       </Forms.Grid>
     ),
     [],
@@ -109,10 +125,10 @@ type Fields = Omit<UpdateContributionInput, "contributionId">;
 const fieldsFragment = graphql`
   fragment ContributionUpdateFormFieldsFragment on AnyContribution {
     ... on CollectionContribution {
-      role
+      position
     }
     ... on ItemContribution {
-      role
+      position
     }
   }
 `;
@@ -148,6 +164,10 @@ const fragment = graphql`
       collection {
         title
       }
+      contributionRole {
+        id
+        label
+      }
       ...ContributionUpdateFormFieldsFragment
     }
     ... on ItemContribution {
@@ -168,6 +188,10 @@ const fragment = graphql`
         title
       }
       title
+      contributionRole {
+        id
+        label
+      }
       ...ContributionUpdateFormFieldsFragment
     }
   }

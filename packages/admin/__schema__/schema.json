@@ -7113,6 +7113,114 @@
         "possibleTypes": null
       },
       {
+        "kind": "INTERFACE",
+        "name": "Attributable",
+        "description": "A record that can retrieve flattened contributions",
+        "fields": [
+          {
+            "name": "attributions",
+            "description": "A priority-ordered list of attributions for the record.",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "INTERFACE",
+                    "name": "Attribution",
+                    "ofType": null
+                  }
+                }
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": [
+          {
+            "kind": "OBJECT",
+            "name": "Collection",
+            "ofType": null
+          },
+          {
+            "kind": "OBJECT",
+            "name": "Item",
+            "ofType": null
+          }
+        ]
+      },
+      {
+        "kind": "INTERFACE",
+        "name": "Attribution",
+        "description": null,
+        "fields": [
+          {
+            "name": "contributor",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "INTERFACE",
+                "name": "ContributorBase",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "roles",
+            "description": "A priority-ordered list of the roles the associated contributor had.\n",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "ControlledVocabularyItem",
+                    "ofType": null
+                  }
+                }
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": [
+          {
+            "kind": "OBJECT",
+            "name": "CollectionAttribution",
+            "ofType": null
+          },
+          {
+            "kind": "OBJECT",
+            "name": "ItemAttribution",
+            "ofType": null
+          }
+        ]
+      },
+      {
         "kind": "ENUM",
         "name": "BlurbBackground",
         "description": "An enumerated value associated with the templating subsystem.\n",
@@ -11080,6 +11188,30 @@
             "deprecationReason": null
           },
           {
+            "name": "attributions",
+            "description": "Attributions for the collection.",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "CollectionAttribution",
+                    "ofType": null
+                  }
+                }
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "availableEntitiesFor",
             "description": "Expose all available entities for this schema property.\n",
             "args": [
@@ -11364,6 +11496,22 @@
               "ofType": {
                 "kind": "OBJECT",
                 "name": "Community",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "contributionRoles",
+            "description": "Look up contribution role configuration for this record.",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "ContributionRoleConfiguration",
                 "ofType": null
               }
             },
@@ -13792,6 +13940,11 @@
           },
           {
             "kind": "INTERFACE",
+            "name": "Attributable",
+            "ofType": null
+          },
+          {
+            "kind": "INTERFACE",
             "name": "ChildEntity",
             "ofType": null
           },
@@ -13863,6 +14016,137 @@
           {
             "kind": "INTERFACE",
             "name": "Searchable",
+            "ofType": null
+          },
+          {
+            "kind": "INTERFACE",
+            "name": "Sluggable",
+            "ofType": null
+          }
+        ],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "CollectionAttribution",
+        "description": "Attributions for collections.\n",
+        "fields": [
+          {
+            "name": "contributor",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "INTERFACE",
+                "name": "ContributorBase",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "createdAt",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "ISO8601DateTime",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "id",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "ID",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "roles",
+            "description": "A priority-ordered list of the roles the associated contributor had.\n",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "ControlledVocabularyItem",
+                    "ofType": null
+                  }
+                }
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "slug",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Slug",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "updatedAt",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "ISO8601DateTime",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [
+          {
+            "kind": "INTERFACE",
+            "name": "Attribution",
+            "ofType": null
+          },
+          {
+            "kind": "INTERFACE",
+            "name": "Node",
             "ofType": null
           },
           {
@@ -13989,6 +14273,22 @@
             "deprecationReason": null
           },
           {
+            "name": "contributionRole",
+            "description": "The actual role",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "ControlledVocabularyItem",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "contributor",
             "description": null,
             "args": [],
@@ -14097,7 +14397,31 @@
             "deprecationReason": null
           },
           {
+            "name": "position",
+            "description": "An optional sorting discriminator to decide which contribution ranks higher.\n",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Int",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "role",
+            "description": "An arbitrary text value describing the role the contributor had",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": true,
+            "deprecationReason": "Use `roleLabel` instead."
+          },
+          {
+            "name": "roleLabel",
             "description": "An arbitrary text value describing the role the contributor had",
             "args": [],
             "type": {
@@ -17620,6 +17944,22 @@
         "description": "Something that can be contributed to",
         "fields": [
           {
+            "name": "contributionRoles",
+            "description": "Look up contribution role configuration for this record.",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "ContributionRoleConfiguration",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "contributors",
             "description": "Contributors to this element",
             "args": [
@@ -17791,6 +18131,22 @@
             "deprecationReason": null
           },
           {
+            "name": "contributionRole",
+            "description": "The actual role",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "ControlledVocabularyItem",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "contributor",
             "description": "The contributor, loaded via union for the most control.\n",
             "args": [],
@@ -17867,7 +18223,31 @@
             "deprecationReason": null
           },
           {
+            "name": "position",
+            "description": "An optional sorting discriminator to decide which contribution ranks higher.\n",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Int",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "role",
+            "description": "An arbitrary text value describing the role the contributor had",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": true,
+            "deprecationReason": "Use `roleLabel` instead."
+          },
+          {
+            "name": "roleLabel",
             "description": "An arbitrary text value describing the role the contributor had",
             "args": [],
             "type": {
@@ -17926,6 +18306,22 @@
               "kind": "SCALAR",
               "name": "String",
               "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "contributionRole",
+            "description": "The actual role",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "ControlledVocabularyItem",
+                "ofType": null
+              }
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -17991,7 +18387,31 @@
             "deprecationReason": null
           },
           {
+            "name": "position",
+            "description": "An optional sorting discriminator to decide which contribution ranks higher.\n",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Int",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "role",
+            "description": "An arbitrary text value describing the role the contributor had",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": true,
+            "deprecationReason": "Use `roleLabel` instead."
+          },
+          {
+            "name": "roleLabel",
             "description": "An arbitrary text value describing the role the contributor had",
             "args": [],
             "type": {
@@ -18187,6 +18607,191 @@
             "deprecationReason": null
           }
         ],
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "ContributionRoleConfiguration",
+        "description": "Configuration for the controlled vocabulary used for contribution roles on a given `source`.\n",
+        "fields": [
+          {
+            "name": "controlledVocabulary",
+            "description": "The set of items to use for contribution roles for this source.\n",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "ControlledVocabulary",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "createdAt",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "ISO8601DateTime",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "defaultItem",
+            "description": "The default item to use when a contribution is created but no role is provided.\nThis is necessary as a fallback for harvesting and other use cases.\n",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "ControlledVocabularyItem",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "id",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "ID",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "otherItem",
+            "description": "The \"other\" item in the set, if available (logic to be implemented later).\n",
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "ControlledVocabularyItem",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "slug",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Slug",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "updatedAt",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "ISO8601DateTime",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [
+          {
+            "kind": "INTERFACE",
+            "name": "Node",
+            "ofType": null
+          },
+          {
+            "kind": "INTERFACE",
+            "name": "Sluggable",
+            "ofType": null
+          }
+        ],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "ContributionRoleConfigurationInput",
+        "description": "Configuration for the controlled vocabulary used for contribution roles on a given `source`.\n",
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "controlledVocabularyId",
+            "description": "The set of items to use for contribution roles for this source.\n",
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "ID",
+                "ofType": null
+              }
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "defaultItemId",
+            "description": "The default item to use when a contribution is created but no role is provided.\nThis is necessary as a fallback for harvesting and other use cases.\n",
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "ID",
+                "ofType": null
+              }
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "otherItemId",
+            "description": "The \"other\" item in the set, if available (logic to be implemented later).\n",
+            "type": {
+              "kind": "SCALAR",
+              "name": "ID",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
         "possibleTypes": null
       },
       {
@@ -21191,6 +21796,18 @@
             "deprecationReason": null
           },
           {
+            "name": "priority",
+            "description": "An optional priority for certain programmatic sorting tasks within Meru API.\n",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Int",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "slug",
             "description": null,
             "args": [],
@@ -21201,6 +21818,30 @@
                 "kind": "SCALAR",
                 "name": "Slug",
                 "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "tags",
+            "description": "Optional tags used for certain programmatic tasks within Meru API.\n",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                }
               }
             },
             "isDeprecated": false,
@@ -33765,6 +34406,22 @@
         "description": "The global configuration for this installation of Meru.",
         "fields": [
           {
+            "name": "contributionRoles",
+            "description": "Global configuration for contribution roles.\n",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "ContributionRoleConfiguration",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "entities",
             "description": "Settings specific to how entities should behave on this installation.",
             "args": [],
@@ -38837,6 +39494,30 @@
             "deprecationReason": null
           },
           {
+            "name": "attributions",
+            "description": "Attributions for the item.",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "ItemAttribution",
+                    "ofType": null
+                  }
+                }
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "availableEntitiesFor",
             "description": "Expose all available entities for this schema property.\n",
             "args": [
@@ -38992,6 +39673,22 @@
               "ofType": {
                 "kind": "OBJECT",
                 "name": "Community",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "contributionRoles",
+            "description": "Look up contribution role configuration for this record.",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "ContributionRoleConfiguration",
                 "ofType": null
               }
             },
@@ -41347,6 +42044,11 @@
           },
           {
             "kind": "INTERFACE",
+            "name": "Attributable",
+            "ofType": null
+          },
+          {
+            "kind": "INTERFACE",
             "name": "ChildEntity",
             "ofType": null
           },
@@ -41418,6 +42120,137 @@
           {
             "kind": "INTERFACE",
             "name": "Searchable",
+            "ofType": null
+          },
+          {
+            "kind": "INTERFACE",
+            "name": "Sluggable",
+            "ofType": null
+          }
+        ],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "ItemAttribution",
+        "description": "Attributions for items.\n",
+        "fields": [
+          {
+            "name": "contributor",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "INTERFACE",
+                "name": "ContributorBase",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "createdAt",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "ISO8601DateTime",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "id",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "ID",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "roles",
+            "description": "A priority-ordered list of the roles the associated contributor had.\n",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "ControlledVocabularyItem",
+                    "ofType": null
+                  }
+                }
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "slug",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Slug",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "updatedAt",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "ISO8601DateTime",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [
+          {
+            "kind": "INTERFACE",
+            "name": "Attribution",
+            "ofType": null
+          },
+          {
+            "kind": "INTERFACE",
+            "name": "Node",
             "ofType": null
           },
           {
@@ -41523,6 +42356,22 @@
               "kind": "SCALAR",
               "name": "String",
               "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "contributionRole",
+            "description": "The actual role",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "ControlledVocabularyItem",
+                "ofType": null
+              }
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -41652,7 +42501,31 @@
             "deprecationReason": null
           },
           {
+            "name": "position",
+            "description": "An optional sorting discriminator to decide which contribution ranks higher.\n",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Int",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "role",
+            "description": "An arbitrary text value describing the role the contributor had",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": true,
+            "deprecationReason": "Use `roleLabel` instead."
+          },
+          {
+            "name": "roleLabel",
             "description": "An arbitrary text value describing the role the contributor had",
             "args": [],
             "type": {
@@ -47626,7 +48499,7 @@
           },
           {
             "name": "updateContribution",
-            "description": "Update a Contribution by ID.\n",
+            "description": "Update a Contribution by ID.\n\n**Note**: Neither the contribution role nor the contributor can be changed\nby this mutation. Rather than deal with uniqueness violations, it's necessary\nto delete the old contribution and create a new one with the correct role\nor contributor.\n",
             "args": [
               {
                 "name": "input",
@@ -49016,6 +49889,11 @@
           },
           {
             "kind": "OBJECT",
+            "name": "CollectionAttribution",
+            "ofType": null
+          },
+          {
+            "kind": "OBJECT",
             "name": "CollectionContribution",
             "ofType": null
           },
@@ -49027,6 +49905,11 @@
           {
             "kind": "OBJECT",
             "name": "ContextualPermission",
+            "ofType": null
+          },
+          {
+            "kind": "OBJECT",
+            "name": "ContributionRoleConfiguration",
             "ofType": null
           },
           {
@@ -49122,6 +50005,11 @@
           {
             "kind": "OBJECT",
             "name": "Item",
+            "ofType": null
+          },
+          {
+            "kind": "OBJECT",
+            "name": "ItemAttribution",
             "ofType": null
           },
           {
@@ -55494,6 +56382,35 @@
               "kind": "OBJECT",
               "name": "Community",
               "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "contributionRoles",
+            "description": "Look up contribution role configuration for a given contributable (or globally).",
+            "args": [
+              {
+                "name": "contributableId",
+                "description": "The contributable to load for, if applicable.",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "ID",
+                  "ofType": null
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              }
+            ],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "ContributionRoleConfiguration",
+                "ofType": null
+              }
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -63177,6 +64094,11 @@
           },
           {
             "kind": "OBJECT",
+            "name": "CollectionAttribution",
+            "ofType": null
+          },
+          {
+            "kind": "OBJECT",
             "name": "CollectionContribution",
             "ofType": null
           },
@@ -63188,6 +64110,11 @@
           {
             "kind": "OBJECT",
             "name": "ContextualPermission",
+            "ofType": null
+          },
+          {
+            "kind": "OBJECT",
+            "name": "ContributionRoleConfiguration",
             "ofType": null
           },
           {
@@ -63263,6 +64190,11 @@
           {
             "kind": "OBJECT",
             "name": "Item",
+            "ofType": null
+          },
+          {
+            "kind": "OBJECT",
+            "name": "ItemAttribution",
             "ofType": null
           },
           {
@@ -65299,6 +66231,22 @@
             "deprecationReason": null
           },
           {
+            "name": "contributionRole",
+            "description": "The actual role",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "ControlledVocabularyItem",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "contributor",
             "description": "The contributor, loaded via abstract interface for simplicity.\n",
             "args": [],
@@ -65375,7 +66323,31 @@
             "deprecationReason": null
           },
           {
+            "name": "position",
+            "description": "An optional sorting discriminator to decide which contribution ranks higher.\n",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Int",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "role",
+            "description": "An arbitrary text value describing the role the contributor had",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": true,
+            "deprecationReason": "Use `roleLabel` instead."
+          },
+          {
+            "name": "roleLabel",
             "description": "An arbitrary text value describing the role the contributor had",
             "args": [],
             "type": {
@@ -69095,7 +70067,7 @@
           },
           {
             "name": "metadata",
-            "description": null,
+            "description": "Metadata for the contribution. If not provided, it will keep whatever is there.\n",
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "ContributionMetadataInput",
@@ -69106,11 +70078,11 @@
             "deprecationReason": null
           },
           {
-            "name": "role",
-            "description": "An arbitrary text value that describes the kind of contribution",
+            "name": "position",
+            "description": "Sorting discriminator for the contribution. If not provided, it will keep whatever is there.\n",
             "type": {
               "kind": "SCALAR",
-              "name": "String",
+              "name": "Int",
               "ofType": null
             },
             "defaultValue": null,
@@ -69271,6 +70243,18 @@
             "type": {
               "kind": "SCALAR",
               "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "contributionRoles",
+            "description": "Optional settings for configuring contribution roles globally.\n\n**Note**: If left blank, it will not apply anything.\n",
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "ContributionRoleConfigurationInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -71784,7 +72768,7 @@
           },
           {
             "name": "metadata",
-            "description": null,
+            "description": "Metadata for the contribution. If not provided, it will keep whatever is there.\n",
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "ContributionMetadataInput",
@@ -71795,11 +72779,23 @@
             "deprecationReason": null
           },
           {
-            "name": "role",
-            "description": "An arbitrary text value that describes the kind of contribution",
+            "name": "position",
+            "description": "Sorting discriminator for the contribution. If not provided, it will keep whatever is there.\n",
             "type": {
               "kind": "SCALAR",
-              "name": "String",
+              "name": "Int",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "roleId",
+            "description": "If not provided, it will use the default role.",
+            "type": {
+              "kind": "SCALAR",
+              "name": "ID",
               "ofType": null
             },
             "defaultValue": null,

@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<61610e7f6c1c68fce428752e3e524f43>>
+ * @generated SignedSource<<402ba419cbc01ff2c986c414799bdfd5>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -67,35 +67,42 @@ v5 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
-  "name": "title",
+  "name": "id",
   "storageKey": null
 },
 v6 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
-  "name": "storage",
+  "name": "title",
   "storageKey": null
 },
 v7 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
-  "name": "alt",
+  "name": "storage",
   "storageKey": null
 },
 v8 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
+  "name": "alt",
+  "storageKey": null
+},
+v9 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
   "name": "url",
   "storageKey": null
 },
-v9 = [
-  (v7/*: any*/),
-  (v8/*: any*/)
-],
 v10 = [
+  (v8/*: any*/),
+  (v9/*: any*/)
+],
+v11 = [
   {
     "alias": null,
     "args": null,
@@ -103,26 +110,26 @@ v10 = [
     "kind": "LinkedField",
     "name": "webp",
     "plural": false,
-    "selections": (v9/*: any*/),
+    "selections": (v10/*: any*/),
     "storageKey": null
   }
 ],
-v11 = {
+v12 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
   "name": "slug",
   "storageKey": null
 },
-v12 = {
+v13 = {
   "kind": "InlineFragment",
   "selections": [
-    (v11/*: any*/)
+    (v12/*: any*/)
   ],
   "type": "Sluggable",
   "abstractKey": "__isSluggable"
 },
-v13 = [
+v14 = [
   {
     "alias": null,
     "args": null,
@@ -131,19 +138,12 @@ v13 = [
     "storageKey": null
   }
 ],
-v14 = {
-  "alias": null,
-  "args": null,
-  "kind": "ScalarField",
-  "name": "id",
-  "storageKey": null
-},
 v15 = [
   {
     "kind": "InlineFragment",
     "selections": [
       (v4/*: any*/),
-      (v5/*: any*/),
+      (v6/*: any*/),
       {
         "alias": null,
         "args": null,
@@ -159,7 +159,7 @@ v15 = [
         "name": "thumbnail",
         "plural": false,
         "selections": [
-          (v6/*: any*/),
+          (v7/*: any*/),
           {
             "alias": "thumb",
             "args": null,
@@ -167,7 +167,7 @@ v15 = [
             "kind": "LinkedField",
             "name": "medium",
             "plural": false,
-            "selections": (v10/*: any*/),
+            "selections": (v11/*: any*/),
             "storageKey": null
           }
         ],
@@ -205,16 +205,16 @@ v15 = [
         "type": "ReferencesGlobalEntityDates",
         "abstractKey": "__isReferencesGlobalEntityDates"
       },
-      (v12/*: any*/),
+      (v13/*: any*/),
       {
         "kind": "InlineFragment",
-        "selections": (v13/*: any*/),
+        "selections": (v14/*: any*/),
         "type": "Item",
         "abstractKey": null
       },
       {
         "kind": "InlineFragment",
-        "selections": (v13/*: any*/),
+        "selections": (v14/*: any*/),
         "type": "Collection",
         "abstractKey": null
       }
@@ -222,7 +222,7 @@ v15 = [
     "type": "Entity",
     "abstractKey": "__isEntity"
   },
-  (v14/*: any*/)
+  (v5/*: any*/)
 ],
 v16 = [
   {
@@ -236,6 +236,32 @@ v16 = [
             "args": null,
             "kind": "ScalarField",
             "name": "role",
+            "storageKey": null
+          },
+          {
+            "alias": null,
+            "args": null,
+            "kind": "ScalarField",
+            "name": "roleLabel",
+            "storageKey": null
+          },
+          {
+            "alias": null,
+            "args": null,
+            "concreteType": "ControlledVocabularyItem",
+            "kind": "LinkedField",
+            "name": "contributionRole",
+            "plural": false,
+            "selections": [
+              {
+                "alias": null,
+                "args": null,
+                "kind": "ScalarField",
+                "name": "label",
+                "storageKey": null
+              },
+              (v5/*: any*/)
+            ],
             "storageKey": null
           }
         ],
@@ -280,7 +306,7 @@ v16 = [
     "type": "AnyContribution",
     "abstractKey": "__isAnyContribution"
   },
-  (v14/*: any*/)
+  (v5/*: any*/)
 ],
 v17 = {
   "alias": null,
@@ -297,9 +323,9 @@ v18 = {
   "storageKey": null
 },
 v19 = [
-  (v11/*: any*/),
-  (v5/*: any*/),
-  (v14/*: any*/)
+  (v12/*: any*/),
+  (v6/*: any*/),
+  (v5/*: any*/)
 ],
 v20 = [
   {
@@ -460,7 +486,7 @@ return {
                 "name": "image",
                 "plural": false,
                 "selections": [
-                  (v6/*: any*/),
+                  (v7/*: any*/),
                   {
                     "alias": null,
                     "args": null,
@@ -468,7 +494,7 @@ return {
                     "kind": "LinkedField",
                     "name": "small",
                     "plural": false,
-                    "selections": (v10/*: any*/),
+                    "selections": (v11/*: any*/),
                     "storageKey": null
                   }
                 ],
@@ -482,8 +508,8 @@ return {
                 "name": "links",
                 "plural": true,
                 "selections": [
-                  (v5/*: any*/),
-                  (v8/*: any*/)
+                  (v6/*: any*/),
+                  (v9/*: any*/)
                 ],
                 "storageKey": null
               },
@@ -539,7 +565,7 @@ return {
                     "name": "affiliation",
                     "storageKey": null
                   },
-                  (v5/*: any*/)
+                  (v6/*: any*/)
                 ],
                 "type": "PersonContributor",
                 "abstractKey": null
@@ -551,7 +577,7 @@ return {
           {
             "kind": "InlineFragment",
             "selections": [
-              (v14/*: any*/)
+              (v5/*: any*/)
             ],
             "type": "Node",
             "abstractKey": "__isNode"
@@ -574,12 +600,12 @@ return {
               {
                 "kind": "InlineFragment",
                 "selections": [
-                  (v5/*: any*/)
+                  (v6/*: any*/)
                 ],
                 "type": "Entity",
                 "abstractKey": "__isEntity"
               },
-              (v12/*: any*/)
+              (v13/*: any*/)
             ],
             "type": "AnyEntity",
             "abstractKey": "__isAnyEntity"
@@ -592,8 +618,8 @@ return {
             "name": "community",
             "plural": false,
             "selections": [
-              (v5/*: any*/),
-              (v11/*: any*/),
+              (v6/*: any*/),
+              (v12/*: any*/),
               {
                 "alias": null,
                 "args": null,
@@ -602,7 +628,7 @@ return {
                 "name": "logo",
                 "plural": false,
                 "selections": [
-                  (v6/*: any*/),
+                  (v7/*: any*/),
                   {
                     "alias": null,
                     "args": null,
@@ -613,7 +639,7 @@ return {
                     "selections": [
                       (v17/*: any*/),
                       (v18/*: any*/),
-                      (v8/*: any*/)
+                      (v9/*: any*/)
                     ],
                     "storageKey": null
                   }
@@ -628,7 +654,7 @@ return {
                 "name": "schemaRanks",
                 "plural": true,
                 "selections": [
-                  (v11/*: any*/),
+                  (v12/*: any*/),
                   {
                     "alias": null,
                     "args": null,
@@ -650,7 +676,7 @@ return {
                     "name": "kind",
                     "storageKey": null
                   },
-                  (v14/*: any*/)
+                  (v5/*: any*/)
                 ],
                 "storageKey": null
               },
@@ -686,11 +712,11 @@ return {
                 ],
                 "storageKey": null
               },
-              (v14/*: any*/)
+              (v5/*: any*/)
             ],
             "storageKey": null
           },
-          (v14/*: any*/)
+          (v5/*: any*/)
         ],
         "storageKey": null
       },
@@ -764,7 +790,7 @@ return {
             "name": "logo",
             "plural": false,
             "selections": [
-              (v6/*: any*/),
+              (v7/*: any*/),
               {
                 "alias": null,
                 "args": null,
@@ -783,8 +809,8 @@ return {
                   {
                     "kind": "InlineFragment",
                     "selections": [
-                      (v7/*: any*/),
                       (v8/*: any*/),
+                      (v9/*: any*/),
                       (v17/*: any*/),
                       (v18/*: any*/)
                     ],
@@ -821,7 +847,7 @@ return {
                       (v18/*: any*/),
                       {
                         "kind": "InlineFragment",
-                        "selections": (v9/*: any*/),
+                        "selections": (v10/*: any*/),
                         "type": "Image",
                         "abstractKey": "__isImage"
                       }
@@ -834,7 +860,7 @@ return {
             ],
             "storageKey": null
           },
-          (v14/*: any*/)
+          (v5/*: any*/)
         ],
         "storageKey": null
       },
@@ -873,12 +899,12 @@ return {
     ]
   },
   "params": {
-    "cacheID": "307b5a11a6cd21da645575d926d95333",
+    "cacheID": "0403f6b108c67ecf073e91e30c5996b1",
     "id": null,
     "metadata": {},
     "name": "pageContributorItemDetailQuery",
     "operationKind": "query",
-    "text": "query pageContributorItemDetailQuery(\n  $slug: Slug!\n  $item: Slug!\n) {\n  contributor(slug: $slug) {\n    __typename\n    ...ContributorDetailFragment\n    ... on Node {\n      __isNode: __typename\n      id\n    }\n  }\n  item(slug: $item) {\n    ...ContributorDetailNavFragment\n    community {\n      ...CommunityContextFragment\n      id\n    }\n    id\n  }\n  ...AppBodyFragment\n}\n\nfragment AppBodyFragment on Query {\n  ...AppHeaderFragment\n  ...AppFooterFragment\n}\n\nfragment AppFooterFragment on Query {\n  communities(order: POSITION_ASCENDING) {\n    pageInfo {\n      totalCount\n    }\n  }\n  globalConfiguration {\n    ...InstallationNameFragment\n    id\n  }\n  ...CommunityPickerFragment\n}\n\nfragment AppHeaderFragment on Query {\n  communities(order: POSITION_ASCENDING) {\n    pageInfo {\n      totalCount\n    }\n  }\n  globalConfiguration {\n    site {\n      logoMode\n    }\n    ...InstallationNameFragment\n    id\n  }\n  ...CommunityPickerFragment\n}\n\nfragment CommunityContextFragment on Community {\n  ...CommunityNameFragment\n  ...CommunityNavListFragment\n  ...CommunityPickerCommunityNameFragment\n}\n\nfragment CommunityLogoFragment on ImageAttachment {\n  storage\n  original {\n    url\n    width\n    height\n  }\n}\n\nfragment CommunityNameFragment on Community {\n  title\n  slug\n  logo {\n    storage\n    original {\n      width\n      height\n    }\n    ...CommunityLogoFragment\n  }\n}\n\nfragment CommunityNavListContentFragment on Community {\n  slug\n  schemaRanks {\n    slug\n    name\n    count\n    kind\n    id\n  }\n  pages {\n    edges {\n      node {\n        slug\n        title\n        id\n      }\n    }\n  }\n}\n\nfragment CommunityNavListFragment on Community {\n  ...CommunityNavListContentFragment\n}\n\nfragment CommunityPickerCommunityNameFragment on Community {\n  title\n}\n\nfragment CommunityPickerFragment on Query {\n  pickerCommunities: communities(order: POSITION_ASCENDING) {\n    edges {\n      node {\n        slug\n        title\n        id\n      }\n    }\n  }\n}\n\nfragment ContributionSummaryEntityFragment on Entity {\n  __isEntity: __typename\n  __typename\n  title\n  subtitle\n  thumbnail {\n    storage\n    ...SquareThumbnailFragment\n  }\n  ... on ReferencesGlobalEntityDates {\n    __isReferencesGlobalEntityDates: __typename\n    published {\n      value\n      ...PrecisionDateFragment\n    }\n  }\n  ... on Sluggable {\n    __isSluggable: __typename\n    slug\n  }\n  ... on Item {\n    summary\n  }\n  ... on Collection {\n    summary\n  }\n}\n\nfragment ContributionSummaryFragment on AnyContribution {\n  __isAnyContribution: __typename\n  ... on Contribution {\n    __isContribution: __typename\n    role\n  }\n  ... on CollectionContribution {\n    entity: collection {\n      ...ContributionSummaryEntityFragment\n      id\n    }\n  }\n  ... on ItemContribution {\n    entity: item {\n      ...ContributionSummaryEntityFragment\n      id\n    }\n  }\n}\n\nfragment ContributorAvatarFragment on ImageAttachment {\n  small {\n    webp {\n      alt\n      url\n    }\n  }\n}\n\nfragment ContributorDetailFragment on Contributor {\n  __isContributor: __typename\n  ...ContributorNameFragment\n  bio\n  orcid\n  collectionContributions {\n    nodes {\n      ...ContributionSummaryFragment\n      id\n    }\n  }\n  itemContributions {\n    nodes {\n      ...ContributionSummaryFragment\n      id\n    }\n  }\n  image {\n    storage\n    ...ContributorAvatarFragment\n  }\n  links {\n    title\n    url\n  }\n  ... on PersonContributor {\n    affiliation\n    title\n  }\n}\n\nfragment ContributorDetailNavFragment on AnyEntity {\n  __isAnyEntity: __typename\n  __typename\n  ... on Entity {\n    __isEntity: __typename\n    title\n  }\n  ... on Sluggable {\n    __isSluggable: __typename\n    slug\n  }\n}\n\nfragment ContributorNameFragment on AnyContributor {\n  __isAnyContributor: __typename\n  ... on PersonContributor {\n    __typename\n    familyName\n    givenName\n  }\n  ... on OrganizationContributor {\n    __typename\n    legalName\n  }\n}\n\nfragment ImageFragment on Image {\n  __isImage: __typename\n  alt\n  url\n  width\n  height\n}\n\nfragment InstallationNameFragment on GlobalConfiguration {\n  site {\n    installationName\n    logoMode\n  }\n  logo {\n    storage\n    original {\n      originalFilename\n      ...ImageFragment\n    }\n    sansText {\n      size\n      webp {\n        width\n        height\n        ...ImageFragment\n      }\n    }\n  }\n}\n\nfragment PrecisionDateFragment on VariablePrecisionDate {\n  precision\n  value\n}\n\nfragment SquareThumbnailFragment on ImageAttachment {\n  thumb: medium {\n    webp {\n      alt\n      url\n    }\n  }\n}\n"
+    "text": "query pageContributorItemDetailQuery(\n  $slug: Slug!\n  $item: Slug!\n) {\n  contributor(slug: $slug) {\n    __typename\n    ...ContributorDetailFragment\n    ... on Node {\n      __isNode: __typename\n      id\n    }\n  }\n  item(slug: $item) {\n    ...ContributorDetailNavFragment\n    community {\n      ...CommunityContextFragment\n      id\n    }\n    id\n  }\n  ...AppBodyFragment\n}\n\nfragment AppBodyFragment on Query {\n  ...AppHeaderFragment\n  ...AppFooterFragment\n}\n\nfragment AppFooterFragment on Query {\n  communities(order: POSITION_ASCENDING) {\n    pageInfo {\n      totalCount\n    }\n  }\n  globalConfiguration {\n    ...InstallationNameFragment\n    id\n  }\n  ...CommunityPickerFragment\n}\n\nfragment AppHeaderFragment on Query {\n  communities(order: POSITION_ASCENDING) {\n    pageInfo {\n      totalCount\n    }\n  }\n  globalConfiguration {\n    site {\n      logoMode\n    }\n    ...InstallationNameFragment\n    id\n  }\n  ...CommunityPickerFragment\n}\n\nfragment CommunityContextFragment on Community {\n  ...CommunityNameFragment\n  ...CommunityNavListFragment\n  ...CommunityPickerCommunityNameFragment\n}\n\nfragment CommunityLogoFragment on ImageAttachment {\n  storage\n  original {\n    url\n    width\n    height\n  }\n}\n\nfragment CommunityNameFragment on Community {\n  title\n  slug\n  logo {\n    storage\n    original {\n      width\n      height\n    }\n    ...CommunityLogoFragment\n  }\n}\n\nfragment CommunityNavListContentFragment on Community {\n  slug\n  schemaRanks {\n    slug\n    name\n    count\n    kind\n    id\n  }\n  pages {\n    edges {\n      node {\n        slug\n        title\n        id\n      }\n    }\n  }\n}\n\nfragment CommunityNavListFragment on Community {\n  ...CommunityNavListContentFragment\n}\n\nfragment CommunityPickerCommunityNameFragment on Community {\n  title\n}\n\nfragment CommunityPickerFragment on Query {\n  pickerCommunities: communities(order: POSITION_ASCENDING) {\n    edges {\n      node {\n        slug\n        title\n        id\n      }\n    }\n  }\n}\n\nfragment ContributionSummaryEntityFragment on Entity {\n  __isEntity: __typename\n  __typename\n  title\n  subtitle\n  thumbnail {\n    storage\n    ...SquareThumbnailFragment\n  }\n  ... on ReferencesGlobalEntityDates {\n    __isReferencesGlobalEntityDates: __typename\n    published {\n      value\n      ...PrecisionDateFragment\n    }\n  }\n  ... on Sluggable {\n    __isSluggable: __typename\n    slug\n  }\n  ... on Item {\n    summary\n  }\n  ... on Collection {\n    summary\n  }\n}\n\nfragment ContributionSummaryFragment on AnyContribution {\n  __isAnyContribution: __typename\n  ... on Contribution {\n    __isContribution: __typename\n    role\n    roleLabel\n    contributionRole {\n      label\n      id\n    }\n  }\n  ... on CollectionContribution {\n    entity: collection {\n      ...ContributionSummaryEntityFragment\n      id\n    }\n  }\n  ... on ItemContribution {\n    entity: item {\n      ...ContributionSummaryEntityFragment\n      id\n    }\n  }\n}\n\nfragment ContributorAvatarFragment on ImageAttachment {\n  small {\n    webp {\n      alt\n      url\n    }\n  }\n}\n\nfragment ContributorDetailFragment on Contributor {\n  __isContributor: __typename\n  ...ContributorNameFragment\n  bio\n  orcid\n  collectionContributions {\n    nodes {\n      ...ContributionSummaryFragment\n      id\n    }\n  }\n  itemContributions {\n    nodes {\n      ...ContributionSummaryFragment\n      id\n    }\n  }\n  image {\n    storage\n    ...ContributorAvatarFragment\n  }\n  links {\n    title\n    url\n  }\n  ... on PersonContributor {\n    affiliation\n    title\n  }\n}\n\nfragment ContributorDetailNavFragment on AnyEntity {\n  __isAnyEntity: __typename\n  __typename\n  ... on Entity {\n    __isEntity: __typename\n    title\n  }\n  ... on Sluggable {\n    __isSluggable: __typename\n    slug\n  }\n}\n\nfragment ContributorNameFragment on AnyContributor {\n  __isAnyContributor: __typename\n  ... on PersonContributor {\n    __typename\n    familyName\n    givenName\n  }\n  ... on OrganizationContributor {\n    __typename\n    legalName\n  }\n}\n\nfragment ImageFragment on Image {\n  __isImage: __typename\n  alt\n  url\n  width\n  height\n}\n\nfragment InstallationNameFragment on GlobalConfiguration {\n  site {\n    installationName\n    logoMode\n  }\n  logo {\n    storage\n    original {\n      originalFilename\n      ...ImageFragment\n    }\n    sansText {\n      size\n      webp {\n        width\n        height\n        ...ImageFragment\n      }\n    }\n  }\n}\n\nfragment PrecisionDateFragment on VariablePrecisionDate {\n  precision\n  value\n}\n\nfragment SquareThumbnailFragment on ImageAttachment {\n  thumb: medium {\n    webp {\n      alt\n      url\n    }\n  }\n}\n"
   }
 };
 })();

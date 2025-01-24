@@ -75,7 +75,6 @@ const query = graphql`
     itemContribution(slug: $itemContributionSlug) {
       ...ContributionUpdateFormFragment
       id
-      role
       item {
         title
       }

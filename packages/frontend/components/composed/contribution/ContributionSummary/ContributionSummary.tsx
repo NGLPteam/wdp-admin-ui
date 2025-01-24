@@ -30,7 +30,9 @@ export default function ContributionSummary({ data, showReadMore }: Props) {
       href={`/${route}/${entity.slug}`}
       metadata={
         <DotList className="t-copy-sm t-copy-lighter">
-          {contribution.role && <li>{capitalize(contribution.role)}</li>}
+          {contribution.roleLabel && (
+            <li>{capitalize(contribution.roleLabel)}</li>
+          )}
           {entity.published?.value && (
             <li>
               {t("date.published")} <PrecisionDate data={entity.published} />
@@ -56,6 +58,10 @@ const fragment = graphql`
   fragment ContributionSummaryFragment on AnyContribution {
     ... on Contribution {
       role
+      roleLabel
+      contributionRole {
+        label
+      }
     }
     ... on CollectionContribution {
       entity: collection {
