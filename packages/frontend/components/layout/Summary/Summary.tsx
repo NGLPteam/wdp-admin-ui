@@ -49,14 +49,14 @@ export default function Summary({
         </div>
         {metadata && <div className="t-copy-sm">{metadata}</div>}
         {summary && (
-          <p
+          <Markdown.Summary
             className={classNames(
               "t-copy-lighter line-clamp-2",
               styles.summary,
             )}
           >
-            <Markdown.Summary>{summary}</Markdown.Summary>
-          </p>
+            {summary}
+          </Markdown.Summary>
         )}
         {showReadMore && href && (
           <NamedLink href={href}>
