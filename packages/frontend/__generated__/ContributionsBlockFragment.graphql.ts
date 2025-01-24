@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<ab2cec80beeea98b50dae29d529f5858>>
+ * @generated SignedSource<<d5bee415b298c9f47ec9efb8d9cdad96>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -13,12 +13,15 @@ export type AttachmentStorage = "CACHE" | "DERIVATIVES" | "REMOTE" | "STORE" | "
 import { FragmentRefs } from "relay-runtime";
 export type ContributionsBlockFragment$data = {
   readonly nodes?: ReadonlyArray<{
+    readonly contributionRole: {
+      readonly label: string;
+    };
     readonly contributor: {
       readonly image?: {
         readonly storage: AttachmentStorage | null | undefined;
       };
     };
-    readonly role: string | null | undefined;
+    readonly roleLabel: string | null | undefined;
     readonly slug: string;
     readonly " $fragmentSpreads": FragmentRefs<"ContributorFragment">;
   }>;
@@ -62,7 +65,25 @@ v1 = [
     "alias": null,
     "args": null,
     "kind": "ScalarField",
-    "name": "role",
+    "name": "roleLabel",
+    "storageKey": null
+  },
+  {
+    "alias": null,
+    "args": null,
+    "concreteType": "ControlledVocabularyItem",
+    "kind": "LinkedField",
+    "name": "contributionRole",
+    "plural": false,
+    "selections": [
+      {
+        "alias": null,
+        "args": null,
+        "kind": "ScalarField",
+        "name": "label",
+        "storageKey": null
+      }
+    ],
     "storageKey": null
   },
   {
@@ -140,6 +161,6 @@ return {
 };
 })();
 
-(node as any).hash = "fcc46829b3a122a79782d07aeab3264d";
+(node as any).hash = "3671565fd3e3b113f22290254f8dc77c";
 
 export default node;

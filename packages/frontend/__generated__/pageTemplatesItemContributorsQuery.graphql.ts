@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<a306d348d99b2afe8088c19ee0724302>>
+ * @generated SignedSource<<f8db7666e886716f628de37a620a7f69>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -51,10 +51,17 @@ v3 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
+  "name": "id",
+  "storageKey": null
+},
+v4 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
   "name": "__typename",
   "storageKey": null
 },
-v4 = [
+v5 = [
   {
     "alias": null,
     "args": null,
@@ -74,13 +81,6 @@ v4 = [
     "storageKey": null
   }
 ],
-v5 = {
-  "alias": null,
-  "args": null,
-  "kind": "ScalarField",
-  "name": "id",
-  "storageKey": null
-},
 v6 = {
   "alias": null,
   "args": null,
@@ -89,9 +89,9 @@ v6 = {
   "storageKey": null
 },
 v7 = [
-  (v3/*: any*/),
+  (v4/*: any*/),
   (v2/*: any*/),
-  (v5/*: any*/)
+  (v3/*: any*/)
 ],
 v8 = [
   (v2/*: any*/),
@@ -99,7 +99,26 @@ v8 = [
     "alias": null,
     "args": null,
     "kind": "ScalarField",
-    "name": "role",
+    "name": "roleLabel",
+    "storageKey": null
+  },
+  {
+    "alias": null,
+    "args": null,
+    "concreteType": "ControlledVocabularyItem",
+    "kind": "LinkedField",
+    "name": "contributionRole",
+    "plural": false,
+    "selections": [
+      {
+        "alias": null,
+        "args": null,
+        "kind": "ScalarField",
+        "name": "label",
+        "storageKey": null
+      },
+      (v3/*: any*/)
+    ],
     "storageKey": null
   },
   {
@@ -110,23 +129,23 @@ v8 = [
     "name": "contributor",
     "plural": false,
     "selections": [
-      (v3/*: any*/),
+      (v4/*: any*/),
       {
         "kind": "InlineFragment",
-        "selections": (v4/*: any*/),
+        "selections": (v5/*: any*/),
         "type": "PersonContributor",
         "abstractKey": null
       },
       {
         "kind": "InlineFragment",
-        "selections": (v4/*: any*/),
+        "selections": (v5/*: any*/),
         "type": "OrganizationContributor",
         "abstractKey": null
       },
       {
         "kind": "InlineFragment",
         "selections": [
-          (v5/*: any*/)
+          (v3/*: any*/)
         ],
         "type": "Node",
         "abstractKey": "__isNode"
@@ -134,11 +153,18 @@ v8 = [
     ],
     "storageKey": null
   },
-  (v5/*: any*/),
+  (v3/*: any*/),
   {
     "kind": "InlineFragment",
     "selections": [
       (v6/*: any*/),
+      {
+        "alias": null,
+        "args": null,
+        "kind": "ScalarField",
+        "name": "role",
+        "storageKey": null
+      },
       {
         "alias": null,
         "args": null,
@@ -402,19 +428,19 @@ return {
             ],
             "storageKey": null
           },
-          (v5/*: any*/)
+          (v3/*: any*/)
         ],
         "storageKey": null
       }
     ]
   },
   "params": {
-    "cacheID": "26ef51c5c6487038545cdfd22921fb8b",
+    "cacheID": "d73988f6a1e285f7649118fb7b9a49a1",
     "id": null,
     "metadata": {},
     "name": "pageTemplatesItemContributorsQuery",
     "operationKind": "query",
-    "text": "query pageTemplatesItemContributorsQuery(\n  $slug: Slug!\n) {\n  item(slug: $slug) {\n    contributions {\n      ...ContributionsBlockFragment\n    }\n    id\n  }\n}\n\nfragment ContributionsBlockFragment on Paginated {\n  __isPaginated: __typename\n  ... on ItemContributionConnection {\n    nodes {\n      slug\n      role\n      contributor {\n        __typename\n        ... on PersonContributor {\n          image {\n            storage\n          }\n        }\n        ... on OrganizationContributor {\n          image {\n            storage\n          }\n        }\n        ... on Node {\n          __isNode: __typename\n          id\n        }\n      }\n      ...ContributorFragment\n      id\n    }\n  }\n  ... on CollectionContributionConnection {\n    nodes {\n      slug\n      role\n      contributor {\n        __typename\n        ... on PersonContributor {\n          image {\n            storage\n          }\n        }\n        ... on OrganizationContributor {\n          image {\n            storage\n          }\n        }\n        ... on Node {\n          __isNode: __typename\n          id\n        }\n      }\n      ...ContributorFragment\n      id\n    }\n  }\n}\n\nfragment ContributorAvatarFragment on ImageAttachment {\n  small {\n    webp {\n      alt\n      url\n    }\n  }\n}\n\nfragment ContributorFragment on Contribution {\n  __isContribution: __typename\n  affiliation\n  role\n  contributor {\n    __typename\n    ... on Sluggable {\n      __isSluggable: __typename\n      slug\n    }\n    ... on Contributor {\n      __isContributor: __typename\n      image {\n        ...ContributorAvatarFragment\n      }\n    }\n    ... on PersonContributor {\n      affiliation\n      orcid\n    }\n    ...ContributorNameFragment\n    ... on Node {\n      __isNode: __typename\n      id\n    }\n  }\n  ... on ItemContribution {\n    item {\n      __typename\n      slug\n      id\n    }\n  }\n  ... on CollectionContribution {\n    collection {\n      __typename\n      slug\n      id\n    }\n  }\n}\n\nfragment ContributorNameFragment on AnyContributor {\n  __isAnyContributor: __typename\n  ... on PersonContributor {\n    __typename\n    familyName\n    givenName\n  }\n  ... on OrganizationContributor {\n    __typename\n    legalName\n  }\n}\n"
+    "text": "query pageTemplatesItemContributorsQuery(\n  $slug: Slug!\n) {\n  item(slug: $slug) {\n    contributions {\n      ...ContributionsBlockFragment\n    }\n    id\n  }\n}\n\nfragment ContributionsBlockFragment on Paginated {\n  __isPaginated: __typename\n  ... on ItemContributionConnection {\n    nodes {\n      slug\n      roleLabel\n      contributionRole {\n        label\n        id\n      }\n      contributor {\n        __typename\n        ... on PersonContributor {\n          image {\n            storage\n          }\n        }\n        ... on OrganizationContributor {\n          image {\n            storage\n          }\n        }\n        ... on Node {\n          __isNode: __typename\n          id\n        }\n      }\n      ...ContributorFragment\n      id\n    }\n  }\n  ... on CollectionContributionConnection {\n    nodes {\n      slug\n      roleLabel\n      contributionRole {\n        label\n        id\n      }\n      contributor {\n        __typename\n        ... on PersonContributor {\n          image {\n            storage\n          }\n        }\n        ... on OrganizationContributor {\n          image {\n            storage\n          }\n        }\n        ... on Node {\n          __isNode: __typename\n          id\n        }\n      }\n      ...ContributorFragment\n      id\n    }\n  }\n}\n\nfragment ContributorAvatarFragment on ImageAttachment {\n  small {\n    webp {\n      alt\n      url\n    }\n  }\n}\n\nfragment ContributorFragment on Contribution {\n  __isContribution: __typename\n  affiliation\n  role\n  contributor {\n    __typename\n    ... on Sluggable {\n      __isSluggable: __typename\n      slug\n    }\n    ... on Contributor {\n      __isContributor: __typename\n      image {\n        ...ContributorAvatarFragment\n      }\n    }\n    ... on PersonContributor {\n      affiliation\n      orcid\n    }\n    ...ContributorNameFragment\n    ... on Node {\n      __isNode: __typename\n      id\n    }\n  }\n  ... on ItemContribution {\n    item {\n      __typename\n      slug\n      id\n    }\n  }\n  ... on CollectionContribution {\n    collection {\n      __typename\n      slug\n      id\n    }\n  }\n}\n\nfragment ContributorNameFragment on AnyContributor {\n  __isAnyContributor: __typename\n  ... on PersonContributor {\n    __typename\n    familyName\n    givenName\n  }\n  ... on OrganizationContributor {\n    __typename\n    legalName\n  }\n}\n"
   }
 };
 })();

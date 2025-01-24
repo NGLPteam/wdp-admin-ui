@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<923743361779f9efa184ce29d70a021a>>
+ * @generated SignedSource<<470704d0af7cdab1957e980bd44d5328>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -11,10 +11,14 @@
 import { Fragment, ReaderFragment } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
 export type ContributionSummaryFragment$data = {
+  readonly contributionRole?: {
+    readonly label: string;
+  };
   readonly entity?: {
     readonly " $fragmentSpreads": FragmentRefs<"ContributionSummaryEntityFragment">;
   };
   readonly role?: string | null | undefined;
+  readonly roleLabel?: string | null | undefined;
   readonly " $fragmentType": "ContributionSummaryFragment";
 };
 export type ContributionSummaryFragment$key = {
@@ -44,6 +48,31 @@ return {
           "args": null,
           "kind": "ScalarField",
           "name": "role",
+          "storageKey": null
+        },
+        {
+          "alias": null,
+          "args": null,
+          "kind": "ScalarField",
+          "name": "roleLabel",
+          "storageKey": null
+        },
+        {
+          "alias": null,
+          "args": null,
+          "concreteType": "ControlledVocabularyItem",
+          "kind": "LinkedField",
+          "name": "contributionRole",
+          "plural": false,
+          "selections": [
+            {
+              "alias": null,
+              "args": null,
+              "kind": "ScalarField",
+              "name": "label",
+              "storageKey": null
+            }
+          ],
           "storageKey": null
         }
       ],
@@ -90,6 +119,6 @@ return {
 };
 })();
 
-(node as any).hash = "105707330827ea90e14bfc934bb364bc";
+(node as any).hash = "70c62d423777f95202a44aa064f7f89e";
 
 export default node;
