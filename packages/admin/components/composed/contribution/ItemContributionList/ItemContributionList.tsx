@@ -74,6 +74,7 @@ function ItemContributionList({
       header: () => <>{t("lists.role_column")}</>,
       id: "contributionRole.label",
     }),
+    ModelColumns.PositionColumn<ItemContributionNode>(),
     ModelColumns.CreatedAtColumn<ItemContributionNode>(),
   ];
 
@@ -129,6 +130,7 @@ const fragment = graphql`
       slug
       createdAt
       updatedAt
+      position
       contributionRole {
         label
       }

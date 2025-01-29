@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<58d28b601fb565877e6fb8cd6ce8f374>>
+ * @generated SignedSource<<8176b81d4949daa647efa199caec00cc>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -29,6 +29,7 @@ export type CollectionContributionListFragment$data = {
     };
     readonly createdAt: string;
     readonly id: string;
+    readonly position: number | null | undefined;
     readonly slug: string;
     readonly updatedAt: string;
   }>;
@@ -110,6 +111,13 @@ return {
           "args": null,
           "kind": "ScalarField",
           "name": "updatedAt",
+          "storageKey": null
+        },
+        {
+          "alias": null,
+          "args": null,
+          "kind": "ScalarField",
+          "name": "position",
           "storageKey": null
         },
         {
@@ -251,6 +259,6 @@ return {
 };
 })();
 
-(node as any).hash = "fb16b1b0d7ec359b53c0ec56d0c82b1c";
+(node as any).hash = "8c8881f6f98d99e6c7f5597deeaeed6f";
 
 export default node;
