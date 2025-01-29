@@ -31,6 +31,9 @@ export default function GridListItem({
 
   const showCover = entity?.__typename === "Collection";
 
+  const renderContributors =
+    showContributors && !!entity.contributors?.pageInfo.totalCount;
+
   const renderContext = showContext &&
     contextFull?.valid &&
     !!contextFull.content && (
@@ -57,9 +60,9 @@ export default function GridListItem({
               <InlineSlotWrapper content={subheader.content} />
             </span>
           )}
-          {showContributors && (
+          {renderContributors && (
             <span className={styles.contributors}>
-              <ContributorsList data={entity?.contributions} noLinks />
+              <ContributorsList data={entity} noLinks />
             </span>
           )}
           {renderMeta && (

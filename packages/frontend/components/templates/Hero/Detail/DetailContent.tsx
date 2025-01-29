@@ -48,7 +48,7 @@ export default function Content({ data }: DetailContentProps) {
         {definition?.listContributors && (
           <ContributorsList
             className="t-copy-medium"
-            data={entity?.contributions}
+            data={entity}
             itemSlug={entity?.slug}
             filterRole="author"
           />
@@ -71,9 +71,7 @@ const fragment = graphql`
     entity {
       ... on Item {
         slug
-        contributions {
-          ...ContributorsListFragment
-        }
+        ...ContributorsListFragment
       }
     }
     definition {

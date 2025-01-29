@@ -45,6 +45,8 @@ export default function SummaryListItem({
     !hideCover &&
     (entity.__typename !== "Item" || !!entity?.thumbnail?.image.webp.url);
 
+  const renderContributors = !!entity.contributors?.pageInfo.totalCount;
+
   return (
     <li className={styles.item}>
       {showThumb && (
@@ -72,9 +74,9 @@ export default function SummaryListItem({
             </span>
           )}
         </div>
-        {entity?.contributions && (
+        {renderContributors && (
           <span className={styles.contributors}>
-            <ContributorsList data={entity.contributions} />
+            <ContributorsList data={entity} />
           </span>
         )}
         <div className={styles.group}>

@@ -27,14 +27,24 @@ export default function ContributorsTemplate({
 
   const mdxHeader = header?.valid && !!header.content;
 
-  const { contributions } = entity;
+  const attributions =
+    entity.__typename !== "%other" ? entity.attributions : [];
 
-  const shouldRender = !!contributions?.nodes?.length;
+  const shouldRender = !!attributions?.length;
 
-  const renderedContributions =
+  const renderedContributors =
     limit && typeof limit === "number"
-      ? contributions?.nodes.slice(0, limit)
-      : contributions?.nodes;
+      ? attributions?.slice(0, limit)
+      : attributions;
+
+  const backParams =
+    entity.__typename !== "%other"
+      ? new URLSearchParams({
+          ...(entity?.slug && {
+            [entity.__typename.toLowerCase()]: entity.slug,
+          }),
+        })
+      : new URLSearchParams();
 
   return shouldRender ? (
     <Container
@@ -50,7 +60,9 @@ export default function ContributorsTemplate({
         )}
       </h3>
       <ul className={styles.list}>
-        {renderedContributions?.map((c, i) => <Contributor key={i} data={c} />)}
+        {renderedContributors?.map((c, i) => (
+          <Contributor key={i} data={c} backParams={backParams} />
+        ))}
       </ul>
     </Container>
   ) : null;
@@ -61,17 +73,17 @@ const fragment = graphql`
     __typename
     entity {
       ... on Item {
-        contributions {
-          nodes {
-            ...ContributorFragment
-          }
+        __typename
+        slug
+        attributions {
+          ...ContributorFragment
         }
       }
       ... on Collection {
-        contributions {
-          nodes {
-            ...ContributorFragment
-          }
+        __typename
+        slug
+        attributions {
+          ...ContributorFragment
         }
       }
     }

@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<0fadc6b35e7ad55fb25f9a14c391f7b5>>
+ * @generated SignedSource<<d8de90b1cf2eff8c54c36bda7c90d4c8>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -20,11 +20,21 @@ export type ContributorsTemplateFragment$data = {
     readonly width: TemplateWidth | null | undefined;
   };
   readonly entity: {
-    readonly contributions?: {
-      readonly nodes: ReadonlyArray<{
-        readonly " $fragmentSpreads": FragmentRefs<"ContributorFragment">;
-      }>;
-    };
+    readonly __typename: "Collection";
+    readonly attributions: ReadonlyArray<{
+      readonly " $fragmentSpreads": FragmentRefs<"ContributorFragment">;
+    }>;
+    readonly slug: string;
+  } | {
+    readonly __typename: "Item";
+    readonly attributions: ReadonlyArray<{
+      readonly " $fragmentSpreads": FragmentRefs<"ContributorFragment">;
+    }>;
+    readonly slug: string;
+  } | {
+    // This will never be '%other', but we need some
+    // value in case none of the concrete values match.
+    readonly __typename: "%other";
   };
   readonly slots: {
     readonly header: {
@@ -39,7 +49,21 @@ export type ContributorsTemplateFragment$key = {
 };
 
 const node: ReaderFragment = (function(){
-var v0 = [
+var v0 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
+  "name": "__typename",
+  "storageKey": null
+},
+v1 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
+  "name": "slug",
+  "storageKey": null
+},
+v2 = [
   {
     "args": null,
     "kind": "FragmentSpread",
@@ -52,13 +76,7 @@ return {
   "metadata": null,
   "name": "ContributorsTemplateFragment",
   "selections": [
-    {
-      "alias": null,
-      "args": null,
-      "kind": "ScalarField",
-      "name": "__typename",
-      "storageKey": null
-    },
+    (v0/*: any*/),
     {
       "alias": null,
       "args": null,
@@ -70,25 +88,16 @@ return {
         {
           "kind": "InlineFragment",
           "selections": [
+            (v0/*: any*/),
+            (v1/*: any*/),
             {
               "alias": null,
               "args": null,
-              "concreteType": "ItemContributionConnection",
+              "concreteType": "ItemAttribution",
               "kind": "LinkedField",
-              "name": "contributions",
-              "plural": false,
-              "selections": [
-                {
-                  "alias": null,
-                  "args": null,
-                  "concreteType": "ItemContribution",
-                  "kind": "LinkedField",
-                  "name": "nodes",
-                  "plural": true,
-                  "selections": (v0/*: any*/),
-                  "storageKey": null
-                }
-              ],
+              "name": "attributions",
+              "plural": true,
+              "selections": (v2/*: any*/),
               "storageKey": null
             }
           ],
@@ -98,25 +107,16 @@ return {
         {
           "kind": "InlineFragment",
           "selections": [
+            (v0/*: any*/),
+            (v1/*: any*/),
             {
               "alias": null,
               "args": null,
-              "concreteType": "CollectionContributionConnection",
+              "concreteType": "CollectionAttribution",
               "kind": "LinkedField",
-              "name": "contributions",
-              "plural": false,
-              "selections": [
-                {
-                  "alias": null,
-                  "args": null,
-                  "concreteType": "CollectionContribution",
-                  "kind": "LinkedField",
-                  "name": "nodes",
-                  "plural": true,
-                  "selections": (v0/*: any*/),
-                  "storageKey": null
-                }
-              ],
+              "name": "attributions",
+              "plural": true,
+              "selections": (v2/*: any*/),
               "storageKey": null
             }
           ],
@@ -191,6 +191,6 @@ return {
 };
 })();
 
-(node as any).hash = "72200b54e605c4749c761f7e4f3d6384";
+(node as any).hash = "75346956a6d9f1fcfbc92e6f25440aa4";
 
 export default node;

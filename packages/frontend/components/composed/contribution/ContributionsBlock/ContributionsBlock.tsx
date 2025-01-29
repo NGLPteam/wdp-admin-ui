@@ -1,12 +1,8 @@
 "use client";
 
 import { useMemo } from "react";
-import { graphql } from "react-relay";
-import { useMaybeFragment } from "@wdp/lib/api/hooks";
-import {
-  ContributionsBlockFragment$key,
-  ContributionsBlockFragment$data,
-} from "@/relay/ContributionsBlockFragment.graphql";
+import { graphql, useFragment } from "react-relay";
+import { ContributionsBlockFragment$key } from "@/relay/ContributionsBlockFragment.graphql";
 import Contributor from "@/components/templates/Contributors/Contributor";
 import BaseContributionsBlock from "./BaseContributionsBlock";
 
@@ -16,25 +12,25 @@ type BaseProps = Omit<
 >;
 
 const ContributionsBlock = ({ data, filterRole, ...baseProps }: Props) => {
-  const contributionData = useMaybeFragment(fragment, data);
+  const { attributions } = useFragment(fragment, data) ?? {};
 
   const showAvatars = useMemo(() => {
-    return contributionData?.nodes?.some(
-      (node: Node) => node.contributor?.image?.storage,
-    );
-  }, [contributionData]);
+    return attributions?.some((node) => node.contributor?.image?.storage);
+  }, [attributions]);
 
-  const contributions = contributionData?.nodes?.filter(
-    (node: Node) =>
+  const filtered = attributions?.filter(
+    (node) =>
       !filterRole ||
-      (node.roleLabel &&
-        node.roleLabel.toLowerCase() === filterRole.toLowerCase()),
+      (!!node.roles.length &&
+        node.roles.find(
+          (r) => r.label.toLowerCase() === filterRole.toLowerCase(),
+        )),
   );
 
   return (
     <BaseContributionsBlock {...baseProps}>
-      {contributions && contributions.length > 0
-        ? contributions.map((node: Node) => (
+      {filtered?.length
+        ? filtered.map((node) => (
             <Contributor data={node} key={node.slug} showAvatar={showAvatars} />
           ))
         : null}
@@ -50,54 +46,19 @@ interface Props extends BaseProps {
 
 export default ContributionsBlock;
 
-type Node = NonNullable<ContributionsBlockFragment$data["nodes"]>[number];
-
 const fragment = graphql`
-  fragment ContributionsBlockFragment on Paginated {
-    ... on ItemContributionConnection {
-      nodes {
-        slug
-        roleLabel
-        contributionRole {
-          label
-        }
-        contributor {
-          ... on PersonContributor {
-            image {
-              storage
-            }
-          }
-          ... on OrganizationContributor {
-            image {
-              storage
-            }
-          }
-        }
-        ...ContributorFragment
+  fragment ContributionsBlockFragment on Item {
+    attributions {
+      slug
+      roles {
+        label
       }
-    }
-
-    ... on CollectionContributionConnection {
-      nodes {
-        slug
-        roleLabel
-        contributionRole {
-          label
+      contributor {
+        image {
+          storage
         }
-        contributor {
-          ... on PersonContributor {
-            image {
-              storage
-            }
-          }
-          ... on OrganizationContributor {
-            image {
-              storage
-            }
-          }
-        }
-        ...ContributorFragment
       }
+      ...ContributorFragment
     }
   }
 `;

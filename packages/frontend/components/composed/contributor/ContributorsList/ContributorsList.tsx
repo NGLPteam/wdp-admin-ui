@@ -1,15 +1,11 @@
-import { useMemo, Fragment } from "react";
+import { useMemo } from "react";
 import { graphql, useFragment } from "react-relay";
 import { useTranslation } from "react-i18next";
 import { useWindowSize } from "@wdp/lib/hooks";
 import NamedLink from "@/components/atomic/links/NamedLink";
-import {
-  ContributorsListFragment$data,
-  ContributorsListFragment$key,
-} from "@/relay/ContributorsListFragment.graphql";
+import { ContributorsListFragment$key } from "@/relay/ContributorsListFragment.graphql";
 import ContributorName from "../ContributorName";
-
-type Node = NonNullable<ContributorsListFragment$data["nodes"]>[number];
+import styles from "./ContributorsList.module.css";
 
 export default function ContributorsList({
   data,
@@ -19,7 +15,7 @@ export default function ContributorsList({
   filterRole,
   noLinks = false,
 }: Props) {
-  const contributionData = useFragment(fragment, data);
+  const { attributions } = useFragment(fragment, data) ?? {};
 
   const { t } = useTranslation();
 
@@ -31,50 +27,48 @@ export default function ContributorsList({
     return size.width < 541 ? 2 : size.width < 769 ? 3 : 4;
   }, [size]);
 
-  const contributions = useMemo(() => {
-    // Filter contributions by role, or return all contributions
-    return filterRole
-      ? contributionData?.nodes?.filter(
-          ({ roleLabel }: Node) =>
-            roleLabel &&
-            roleLabel.toLowerCase() === filterRole.toLocaleLowerCase(),
-        )
-      : contributionData?.nodes || [];
-  }, [contributionData, filterRole]);
+  const filtered = attributions?.filter(
+    (node) =>
+      !filterRole ||
+      (!!node.roles.length &&
+        node.roles.find(
+          (r) => r.label.toLowerCase() === filterRole.toLowerCase(),
+        )),
+  );
 
-  return contributions && contributions.length > 0 ? (
+  return filtered?.length ? (
     <span className={className}>
-      {contributions.slice(0, limit).map(({ contributor }: Node, i: number) => {
-        const params = new URLSearchParams({
+      {filtered.slice(0, limit).map(({ contributor }, i: number) => {
+        const _params = new URLSearchParams({
           ...(itemSlug && { item: itemSlug }),
           ...(collectionSlug && {
             collection: collectionSlug,
           }),
         });
-        const href = contributor.slug
-          ? `/contributors/${contributor.slug}?${params.toString()}`
-          : "#";
+        // const href = contributor.slug
+        //   ? `/contributors/${contributor.slug}?${params.toString()}`
+        //   : "#";
+
+        const href = "#";
 
         return (
-          <Fragment key={i}>
-            {contributor.slug && !noLinks ? (
+          <span className={styles.item} key={i}>
+            {href && !noLinks ? (
               <>
                 <NamedLink href={href}>
                   <ContributorName data={contributor} />
                 </NamedLink>
-                {i < contributions.length - 1 && ", "}
               </>
             ) : (
               <>
                 <ContributorName data={contributor} />
-                {i < contributions.length - 1 && ", "}
               </>
             )}
-          </Fragment>
+          </span>
         );
       })}
-      {contributions.length > limit && (
-        <>{t("list.and_x_more", { count: contributions.length - limit })}</>
+      {attributions?.length && attributions?.length > limit && (
+        <>{t("list.and_x_more", { count: attributions.length - limit })}</>
       )}
     </span>
   ) : null;
@@ -94,31 +88,25 @@ interface Props {
 }
 
 const fragment = graphql`
-  fragment ContributorsListFragment on Paginated {
-    ... on ItemContributionConnection {
-      nodes {
-        roleLabel
-        contributionRole {
+  fragment ContributorsListFragment on AnyEntity {
+    ... on Item {
+      attributions {
+        slug
+        roles {
           label
         }
         contributor {
-          ... on Sluggable {
-            slug
-          }
           ...ContributorNameFragment
         }
       }
     }
-    ... on CollectionContributionConnection {
-      nodes {
-        roleLabel
-        contributionRole {
+    ... on Collection {
+      attributions {
+        slug
+        roles {
           label
         }
         contributor {
-          ... on Sluggable {
-            slug
-          }
           ...ContributorNameFragment
         }
       }
