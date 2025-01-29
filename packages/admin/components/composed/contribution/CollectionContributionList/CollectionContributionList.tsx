@@ -109,9 +109,7 @@ function CollectionContributionList({
       CollectionContributionListFragment$data,
       CollectionContributionNode
     >
-      modelName={
-        onContributor ? "collection_contribution" : "collection_contributor"
-      }
+      modelName="collection_contribution"
       columns={columns}
       actions={actions}
       buttons={buttons}

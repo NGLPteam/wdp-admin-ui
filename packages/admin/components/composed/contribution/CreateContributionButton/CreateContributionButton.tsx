@@ -24,9 +24,7 @@ export default function CreateContributionButton({
       }}
       actions={onContributor ? "contributors.update" : "self.update"}
     >
-      {onContributor
-        ? t("actions.create.contribution")
-        : t("actions.add.contributor")}
+      {t("actions.create.contribution")}
     </ButtonControlDrawer>
   ) : null;
 }

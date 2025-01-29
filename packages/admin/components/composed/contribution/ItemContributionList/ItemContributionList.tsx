@@ -103,7 +103,7 @@ function ItemContributionList({
 
   return (
     <ModelListPage<ItemContributionListFragment$data, ItemContributionNode>
-      modelName={onContributor ? "item_contribution" : "item_contributor"}
+      modelName="item_contribution"
       columns={columns}
       actions={actions}
       buttons={buttons}

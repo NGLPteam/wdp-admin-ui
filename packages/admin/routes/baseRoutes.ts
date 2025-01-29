@@ -75,7 +75,7 @@ export const baseRoutes: BaseRoute[] = [
               {
                 name: "collection.manage.contributions",
                 path: "/collections/[slug]/manage/contributions",
-                label: "glossary.contributor_other",
+                label: "glossary.contribution_other",
                 actions: ["self.update"],
               },
               {
@@ -151,7 +151,7 @@ export const baseRoutes: BaseRoute[] = [
               {
                 name: "item.manage.contributions",
                 path: "/items/[slug]/manage/contributions",
-                label: "glossary.contributor_other",
+                label: "glossary.contribution_other",
                 actions: ["self.update"],
               },
               {
