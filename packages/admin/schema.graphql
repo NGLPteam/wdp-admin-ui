@@ -1309,6 +1309,21 @@ enum AttachmentStorage {
   STORE
 }
 
+"""A record that can retrieve flattened contributions"""
+interface Attributable {
+  """A priority-ordered list of attributions for the record."""
+  attributions: [Attribution!]!
+}
+
+interface Attribution {
+  contributor: ContributorBase!
+  """
+  A priority-ordered list of the roles the associated contributor had.
+  
+  """
+  roles: [ControlledVocabularyItem!]!
+}
+
 """
 An enumerated value associated with the templating subsystem.
 
@@ -1903,7 +1918,7 @@ type ClearInitialOrderingPayload implements StandardMutationPayload {
 }
 
 """A collection of items"""
-type Collection implements Accessible & Attachable & ChildEntity & Contributable & Entity & ExposesPermissions & HasDOI & HasDefaultTimestamps & HasEntityAnalytics & HasEntityBreadcrumbs & HasISSN & HasSchemaProperties & Node & ReferencesEntityVisibility & ReferencesGlobalEntityDates & SchemaInstance & Searchable & Sluggable {
+type Collection implements Accessible & Attachable & Attributable & ChildEntity & Contributable & Entity & ExposesPermissions & HasDOI & HasDefaultTimestamps & HasEntityAnalytics & HasEntityBreadcrumbs & HasISSN & HasSchemaProperties & Node & ReferencesEntityVisibility & ReferencesGlobalEntityDates & SchemaInstance & Searchable & Sluggable {
   """Derived access control list"""
   accessControlList: AccessControlList
   accessGrants(
@@ -2077,6 +2092,8 @@ type Collection implements Accessible & Attachable & ChildEntity & Contributable
     """The amount of edges / nodes to fetch per page"""
     perPage: Int
   ): ContextualPermissionConnection!
+  """Attributions for the collection."""
+  attributions: [CollectionAttribution!]!
   """
   Expose all available entities for this schema property.
   
@@ -2126,6 +2143,8 @@ type Collection implements Accessible & Attachable & ChildEntity & Contributable
     schema: [String!]
   ): CollectionConnection!
   community: Community!
+  """Look up contribution role configuration for this record."""
+  contributionRoles: ContributionRoleConfiguration!
   contributions(
     """Returns the elements in the list that come after the specified cursor."""
     after: String
@@ -2588,6 +2607,23 @@ type Collection implements Accessible & Attachable & ChildEntity & Contributable
   visibleUntilAt: ISO8601DateTime
 }
 
+"""
+Attributions for collections.
+
+"""
+type CollectionAttribution implements Attribution & Node & Sluggable {
+  contributor: ContributorBase!
+  createdAt: ISO8601DateTime!
+  id: ID!
+  """
+  A priority-ordered list of the roles the associated contributor had.
+  
+  """
+  roles: [ControlledVocabularyItem!]!
+  slug: Slug!
+  updatedAt: ISO8601DateTime!
+}
+
 """The connection type for Collection."""
 type CollectionConnection implements Paginated {
   """A list of edges."""
@@ -2603,6 +2639,8 @@ type CollectionContribution implements Contribution & ContributionBase & Node & 
   """A potentially-overridden value from person contributors"""
   affiliation: String
   collection: Collection!
+  """The actual role"""
+  contributionRole: ControlledVocabularyItem!
   contributor: AnyContributor!
   contributorKind: ContributorKind!
   createdAt: ISO8601DateTime!
@@ -2612,8 +2650,15 @@ type CollectionContribution implements Contribution & ContributionBase & Node & 
   """A potentially-overridden value from organization contributors"""
   location: String
   metadata: ContributionMetadata!
+  """
+  An optional sorting discriminator to decide which contribution ranks higher.
+  
+  """
+  position: Int
   """An arbitrary text value describing the role the contributor had"""
-  role: String
+  role: String @deprecated(reason: "Use `roleLabel` instead.")
+  """An arbitrary text value describing the role the contributor had"""
+  roleLabel: String
   slug: Slug!
   """A potentially-overridden value from person contributors"""
   title: String
@@ -3206,6 +3251,8 @@ enum ContextualPermissionOrder {
 
 """Something that can be contributed to"""
 interface Contributable {
+  """Look up contribution role configuration for this record."""
+  contributionRoles: ContributionRoleConfiguration!
   """Contributors to this element"""
   contributors(
     """Returns the elements in the list that come after the specified cursor."""
@@ -3246,6 +3293,8 @@ See `Contribution` and `TemplateContribution`.
 interface Contribution implements ContributionBase {
   """A potentially-overridden value from person contributors"""
   affiliation: String
+  """The actual role"""
+  contributionRole: ControlledVocabularyItem!
   """
   The contributor, loaded via union for the most control.
   
@@ -3257,8 +3306,15 @@ interface Contribution implements ContributionBase {
   """A potentially-overridden value from organization contributors"""
   location: String
   metadata: ContributionMetadata!
+  """
+  An optional sorting discriminator to decide which contribution ranks higher.
+  
+  """
+  position: Int
   """An arbitrary text value describing the role the contributor had"""
-  role: String
+  role: String @deprecated(reason: "Use `roleLabel` instead.")
+  """An arbitrary text value describing the role the contributor had"""
+  roleLabel: String
   """A potentially-overridden value from person contributors"""
   title: String
 }
@@ -3275,14 +3331,23 @@ See `Contribution` and `TemplateContribution`.
 interface ContributionBase {
   """A potentially-overridden value from person contributors"""
   affiliation: String
+  """The actual role"""
+  contributionRole: ControlledVocabularyItem!
   contributorKind: ContributorKind!
   """A potentially-overridden display name value for all contributor types"""
   displayName: String!
   """A potentially-overridden value from organization contributors"""
   location: String
   metadata: ContributionMetadata!
+  """
+  An optional sorting discriminator to decide which contribution ranks higher.
+  
+  """
+  position: Int
   """An arbitrary text value describing the role the contributor had"""
-  role: String
+  role: String @deprecated(reason: "Use `roleLabel` instead.")
+  """An arbitrary text value describing the role the contributor had"""
+  roleLabel: String
   """A potentially-overridden value from person contributors"""
   title: String
 }
@@ -3323,6 +3388,56 @@ enum ContributionOrder {
   TARGET_TITLE_ASCENDING
   """Sort contributors by their target's title Z-A"""
   TARGET_TITLE_DESCENDING
+}
+
+"""
+Configuration for the controlled vocabulary used for contribution roles on a given `source`.
+
+"""
+type ContributionRoleConfiguration implements Node & Sluggable {
+  """
+  The set of items to use for contribution roles for this source.
+  
+  """
+  controlledVocabulary: ControlledVocabulary!
+  createdAt: ISO8601DateTime!
+  """
+  The default item to use when a contribution is created but no role is provided.
+  This is necessary as a fallback for harvesting and other use cases.
+  
+  """
+  defaultItem: ControlledVocabularyItem!
+  id: ID!
+  """
+  The "other" item in the set, if available (logic to be implemented later).
+  
+  """
+  otherItem: ControlledVocabularyItem
+  slug: Slug!
+  updatedAt: ISO8601DateTime!
+}
+
+"""
+Configuration for the controlled vocabulary used for contribution roles on a given `source`.
+
+"""
+input ContributionRoleConfigurationInput {
+  """
+  The set of items to use for contribution roles for this source.
+  
+  """
+  controlledVocabularyId: ID!
+  """
+  The default item to use when a contribution is created but no role is provided.
+  This is necessary as a fallback for harvesting and other use cases.
+  
+  """
+  defaultItemId: ID!
+  """
+  The "other" item in the set, if available (logic to be implemented later).
+  
+  """
+  otherItemId: ID
 }
 
 """
@@ -4121,7 +4236,17 @@ type ControlledVocabularyItem implements Node & Sluggable {
   
   """
   label: String!
+  """
+  An optional priority for certain programmatic sorting tasks within Meru API.
+  
+  """
+  priority: Int
   slug: Slug!
+  """
+  Optional tags used for certain programmatic tasks within Meru API.
+  
+  """
+  tags: [String!]!
   """
   Whether or not this should just be used as a grouping label and not be selectable. Implies children.
   
@@ -6806,6 +6931,11 @@ type GlobalAccessControlList implements ExposesPermissions {
 
 """The global configuration for this installation of Meru."""
 type GlobalConfiguration implements Node {
+  """
+  Global configuration for contribution roles.
+  
+  """
+  contributionRoles: ContributionRoleConfiguration!
   """Settings specific to how entities should behave on this installation."""
   entities: EntitiesSettings!
   id: ID!
@@ -7710,7 +7840,7 @@ type IntegerProperty implements ScalarProperty & SchemaProperty & SearchableProp
 }
 
 """An item that belongs to a collection"""
-type Item implements Accessible & Attachable & ChildEntity & Contributable & Entity & ExposesPermissions & HasDOI & HasDefaultTimestamps & HasEntityAnalytics & HasEntityBreadcrumbs & HasISSN & HasSchemaProperties & Node & ReferencesEntityVisibility & ReferencesGlobalEntityDates & SchemaInstance & Searchable & Sluggable {
+type Item implements Accessible & Attachable & Attributable & ChildEntity & Contributable & Entity & ExposesPermissions & HasDOI & HasDefaultTimestamps & HasEntityAnalytics & HasEntityBreadcrumbs & HasISSN & HasSchemaProperties & Node & ReferencesEntityVisibility & ReferencesGlobalEntityDates & SchemaInstance & Searchable & Sluggable {
   """Derived access control list"""
   accessControlList: AccessControlList
   accessGrants(
@@ -7884,6 +8014,8 @@ type Item implements Accessible & Attachable & ChildEntity & Contributable & Ent
     """The amount of edges / nodes to fetch per page"""
     perPage: Int
   ): ContextualPermissionConnection!
+  """Attributions for the item."""
+  attributions: [ItemAttribution!]!
   """
   Expose all available entities for this schema property.
   
@@ -7910,6 +8042,8 @@ type Item implements Accessible & Attachable & ChildEntity & Contributable & Ent
   ): ItemConnection! @deprecated(reason: "Use Item.items")
   collection: Collection!
   community: Community!
+  """Look up contribution role configuration for this record."""
+  contributionRoles: ContributionRoleConfiguration!
   contributions(
     """Returns the elements in the list that come after the specified cursor."""
     after: String
@@ -8361,6 +8495,23 @@ type Item implements Accessible & Attachable & ChildEntity & Contributable & Ent
   visibleUntilAt: ISO8601DateTime
 }
 
+"""
+Attributions for items.
+
+"""
+type ItemAttribution implements Attribution & Node & Sluggable {
+  contributor: ContributorBase!
+  createdAt: ISO8601DateTime!
+  id: ID!
+  """
+  A priority-ordered list of the roles the associated contributor had.
+  
+  """
+  roles: [ControlledVocabularyItem!]!
+  slug: Slug!
+  updatedAt: ISO8601DateTime!
+}
+
 """The connection type for Item."""
 type ItemConnection implements Paginated {
   """A list of edges."""
@@ -8375,6 +8526,8 @@ type ItemConnection implements Paginated {
 type ItemContribution implements Contribution & ContributionBase & Node & Sluggable {
   """A potentially-overridden value from person contributors"""
   affiliation: String
+  """The actual role"""
+  contributionRole: ControlledVocabularyItem!
   contributor: AnyContributor!
   contributorKind: ContributorKind!
   createdAt: ISO8601DateTime!
@@ -8385,8 +8538,15 @@ type ItemContribution implements Contribution & ContributionBase & Node & Slugga
   """A potentially-overridden value from organization contributors"""
   location: String
   metadata: ContributionMetadata!
+  """
+  An optional sorting discriminator to decide which contribution ranks higher.
+  
+  """
+  position: Int
   """An arbitrary text value describing the role the contributor had"""
-  role: String
+  role: String @deprecated(reason: "Use `roleLabel` instead.")
+  """An arbitrary text value describing the role the contributor had"""
+  roleLabel: String
   slug: Slug!
   """A potentially-overridden value from person contributors"""
   title: String
@@ -9717,6 +9877,11 @@ type Mutation {
   ): UpdateCommunityPayload
   """
   Update a Contribution by ID.
+  
+  **Note**: Neither the contribution role nor the contributor can be changed
+  by this mutation. Rather than deal with uniqueness violations, it's necessary
+  to delete the old contribution and create a new one with the correct role
+  or contributor.
   
   """
   updateContribution(
@@ -11343,6 +11508,13 @@ type Query implements QueriesControlledVocabulary & QueriesControlledVocabularyS
   community(slug: Slug!): Community
   """Look up a community by its title"""
   communityByTitle(title: String!): Community
+  """
+  Look up contribution role configuration for a given contributable (or globally).
+  """
+  contributionRoles(
+    """The contributable to load for, if applicable."""
+    contributableId: ID
+  ): ContributionRoleConfiguration!
   """Look up a contributor by slug"""
   contributor(slug: Slug!): AnyContributor
   """
@@ -13377,6 +13549,8 @@ It uses `ContributorBase` in place of the `AnyContributor` union.
 type TemplateContribution implements ContributionBase {
   """A potentially-overridden value from person contributors"""
   affiliation: String
+  """The actual role"""
+  contributionRole: ControlledVocabularyItem!
   """
   The contributor, loaded via abstract interface for simplicity.
   
@@ -13388,8 +13562,15 @@ type TemplateContribution implements ContributionBase {
   """A potentially-overridden value from organization contributors"""
   location: String
   metadata: ContributionMetadata!
+  """
+  An optional sorting discriminator to decide which contribution ranks higher.
+  
+  """
+  position: Int
   """An arbitrary text value describing the role the contributor had"""
-  role: String
+  role: String @deprecated(reason: "Use `roleLabel` instead.")
+  """An arbitrary text value describing the role the contributor had"""
+  roleLabel: String
   """A potentially-overridden value from person contributors"""
   title: String
 }
@@ -14517,9 +14698,16 @@ input UpdateContributionInput {
   """A unique identifier for the client performing the mutation."""
   clientMutationId: String
   contributionId: ID!
+  """
+  Metadata for the contribution. If not provided, it will keep whatever is there.
+  
+  """
   metadata: ContributionMetadataInput
-  """An arbitrary text value that describes the kind of contribution"""
-  role: String
+  """
+  Sorting discriminator for the contribution. If not provided, it will keep whatever is there.
+  
+  """
+  position: Int
 }
 
 """Autogenerated return type of UpdateContribution."""
@@ -14543,6 +14731,13 @@ input UpdateGlobalConfigurationInput {
   clearLogo: Boolean = false
   """A unique identifier for the client performing the mutation."""
   clientMutationId: String
+  """
+  Optional settings for configuring contribution roles globally.
+  
+  **Note**: If left blank, it will not apply anything.
+  
+  """
+  contributionRoles: ContributionRoleConfigurationInput
   """Possible new settings for entity behavior"""
   entities: EntitiesSettingsInput
   """Possible new settings for the institution"""
@@ -14971,9 +15166,18 @@ input UpsertContributionInput {
   clientMutationId: String
   contributableId: ID!
   contributorId: ID!
+  """
+  Metadata for the contribution. If not provided, it will keep whatever is there.
+  
+  """
   metadata: ContributionMetadataInput
-  """An arbitrary text value that describes the kind of contribution"""
-  role: String
+  """
+  Sorting discriminator for the contribution. If not provided, it will keep whatever is there.
+  
+  """
+  position: Int
+  """If not provided, it will use the default role."""
+  roleId: ID
 }
 
 """Autogenerated return type of UpsertContribution."""

@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<432c9544f4b312cb449c890b67195ae6>>
+ * @generated SignedSource<<c814f3270f6fc2be5e8553cc08d10b44>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -15,10 +15,8 @@ export type DetailContentFragment$data = {
     readonly listContributors: boolean | null | undefined;
   };
   readonly entity: {
-    readonly contributions?: {
-      readonly " $fragmentSpreads": FragmentRefs<"ContributorsListFragment">;
-    };
     readonly slug?: string;
+    readonly " $fragmentSpreads": FragmentRefs<"ContributorsListFragment">;
   };
   readonly slots: {
     readonly callToAction: {
@@ -84,20 +82,9 @@ return {
               "storageKey": null
             },
             {
-              "alias": null,
               "args": null,
-              "concreteType": "ItemContributionConnection",
-              "kind": "LinkedField",
-              "name": "contributions",
-              "plural": false,
-              "selections": [
-                {
-                  "args": null,
-                  "kind": "FragmentSpread",
-                  "name": "ContributorsListFragment"
-                }
-              ],
-              "storageKey": null
+              "kind": "FragmentSpread",
+              "name": "ContributorsListFragment"
             }
           ],
           "type": "Item",
@@ -191,6 +178,6 @@ return {
 };
 })();
 
-(node as any).hash = "57b9179bb5b946573de3eb6f86d67845";
+(node as any).hash = "0099babf0582563561d9acfe6b200dbc";
 
 export default node;

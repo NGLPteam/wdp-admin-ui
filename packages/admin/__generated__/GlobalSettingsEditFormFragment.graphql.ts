@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<3e47ff42178b59963af3a170022eca0e>>
+ * @generated SignedSource<<6d2dc0813b6c7a498bb4ea231668771d>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -12,6 +12,21 @@ import { Fragment, ReaderFragment } from 'relay-runtime';
 export type SiteLogoMode = "NONE" | "SANS_TEXT" | "WITH_TEXT" | "%future added value";
 import { FragmentRefs } from "relay-runtime";
 export type GlobalSettingsEditFormFragment$data = {
+  readonly contributionRoles: {
+    readonly controlledVocabulary: {
+      readonly id: string;
+      readonly items: ReadonlyArray<{
+        readonly id: string;
+        readonly label: string;
+        readonly unselectable: boolean;
+      }>;
+      readonly name: string;
+    };
+    readonly defaultItem: {
+      readonly id: string;
+      readonly label: string;
+    };
+  };
   readonly entities: {
     readonly suppressExternalLinks: boolean;
   };
@@ -39,7 +54,22 @@ export type GlobalSettingsEditFormFragment$key = {
   readonly " $fragmentSpreads": FragmentRefs<"GlobalSettingsEditFormFragment">;
 };
 
-const node: ReaderFragment = {
+const node: ReaderFragment = (function(){
+var v0 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
+  "name": "id",
+  "storageKey": null
+},
+v1 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
+  "name": "label",
+  "storageKey": null
+};
+return {
   "argumentDefinitions": [],
   "kind": "Fragment",
   "metadata": null,
@@ -167,12 +197,76 @@ const node: ReaderFragment = {
         }
       ],
       "storageKey": null
+    },
+    {
+      "alias": null,
+      "args": null,
+      "concreteType": "ContributionRoleConfiguration",
+      "kind": "LinkedField",
+      "name": "contributionRoles",
+      "plural": false,
+      "selections": [
+        {
+          "alias": null,
+          "args": null,
+          "concreteType": "ControlledVocabulary",
+          "kind": "LinkedField",
+          "name": "controlledVocabulary",
+          "plural": false,
+          "selections": [
+            (v0/*: any*/),
+            {
+              "alias": null,
+              "args": null,
+              "kind": "ScalarField",
+              "name": "name",
+              "storageKey": null
+            },
+            {
+              "alias": null,
+              "args": null,
+              "concreteType": "ControlledVocabularyItem",
+              "kind": "LinkedField",
+              "name": "items",
+              "plural": true,
+              "selections": [
+                (v0/*: any*/),
+                (v1/*: any*/),
+                {
+                  "alias": null,
+                  "args": null,
+                  "kind": "ScalarField",
+                  "name": "unselectable",
+                  "storageKey": null
+                }
+              ],
+              "storageKey": null
+            }
+          ],
+          "storageKey": null
+        },
+        {
+          "alias": null,
+          "args": null,
+          "concreteType": "ControlledVocabularyItem",
+          "kind": "LinkedField",
+          "name": "defaultItem",
+          "plural": false,
+          "selections": [
+            (v0/*: any*/),
+            (v1/*: any*/)
+          ],
+          "storageKey": null
+        }
+      ],
+      "storageKey": null
     }
   ],
   "type": "GlobalConfiguration",
   "abstractKey": null
 };
+})();
 
-(node as any).hash = "f072fd6bd901ae8d330f96736d0de733";
+(node as any).hash = "7a003328f24c0057693d62cd90f20424";
 
 export default node;

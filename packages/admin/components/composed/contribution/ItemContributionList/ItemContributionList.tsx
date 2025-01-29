@@ -72,8 +72,9 @@ function ItemContributionList({
     nameColumn === "item" ? collectionNameColumn : contributorNameColumn,
     ModelColumns.StringColumn<ItemContributionNode>({
       header: () => <>{t("lists.role_column")}</>,
-      id: "role",
+      id: "contributionRole.label",
     }),
+    ModelColumns.PositionColumn<ItemContributionNode>(),
     ModelColumns.CreatedAtColumn<ItemContributionNode>(),
   ];
 
@@ -103,7 +104,7 @@ function ItemContributionList({
 
   return (
     <ModelListPage<ItemContributionListFragment$data, ItemContributionNode>
-      modelName={onContributor ? "item_contribution" : "item_contributor"}
+      modelName="item_contribution"
       columns={columns}
       actions={actions}
       buttons={buttons}
@@ -129,7 +130,10 @@ const fragment = graphql`
       slug
       createdAt
       updatedAt
-      role
+      position
+      contributionRole {
+        label
+      }
       contributor {
         __typename
         ... on Sluggable {

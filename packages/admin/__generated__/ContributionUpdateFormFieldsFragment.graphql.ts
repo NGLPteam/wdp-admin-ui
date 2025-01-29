@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<e9497be324b1cb5ed6c466a9a2cadd3a>>
+ * @generated SignedSource<<800878d4c482c7abae5cb1a102a570fe>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -11,7 +11,7 @@
 import { Fragment, ReaderFragment } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
 export type ContributionUpdateFormFieldsFragment$data = {
-  readonly role?: string | null | undefined;
+  readonly position?: number | null | undefined;
   readonly " $fragmentType": "ContributionUpdateFormFieldsFragment";
 };
 export type ContributionUpdateFormFieldsFragment$key = {
@@ -25,7 +25,7 @@ var v0 = [
     "alias": null,
     "args": null,
     "kind": "ScalarField",
-    "name": "role",
+    "name": "position",
     "storageKey": null
   }
 ];
@@ -53,6 +53,6 @@ return {
 };
 })();
 
-(node as any).hash = "2f7c3e330b6e704fb3e0e8d315360615";
+(node as any).hash = "d818da465d5c92516f8cd67b507f8ad6";
 
 export default node;

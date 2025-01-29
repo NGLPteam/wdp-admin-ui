@@ -67,4 +67,8 @@ export default css`
   .t-truncate {
     ${tTruncate}
   }
+
+  .t-column-indent {
+    padding-inline-start: calc(1.5 * var(--table-column-gap));
+  }
 `;

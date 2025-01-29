@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<8d0dc512b8b17a814059a0d3b517516c>>
+ * @generated SignedSource<<6d33cae169e704b3550349172ddbe9a0>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -11,12 +11,14 @@
 import { Fragment, ReaderFragment } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
 export type ContributorsListFragment$data = {
-  readonly nodes?: ReadonlyArray<{
+  readonly attributions?: ReadonlyArray<{
     readonly contributor: {
-      readonly slug?: string;
       readonly " $fragmentSpreads": FragmentRefs<"ContributorNameFragment">;
     };
-    readonly role: string | null | undefined;
+    readonly roles: ReadonlyArray<{
+      readonly label: string;
+    }>;
+    readonly slug: string;
   }>;
   readonly " $fragmentType": "ContributorsListFragment";
 };
@@ -31,7 +33,25 @@ var v0 = [
     "alias": null,
     "args": null,
     "kind": "ScalarField",
-    "name": "role",
+    "name": "slug",
+    "storageKey": null
+  },
+  {
+    "alias": null,
+    "args": null,
+    "concreteType": "ControlledVocabularyItem",
+    "kind": "LinkedField",
+    "name": "roles",
+    "plural": true,
+    "selections": [
+      {
+        "alias": null,
+        "args": null,
+        "kind": "ScalarField",
+        "name": "label",
+        "storageKey": null
+      }
+    ],
     "storageKey": null
   },
   {
@@ -42,20 +62,6 @@ var v0 = [
     "name": "contributor",
     "plural": false,
     "selections": [
-      {
-        "kind": "InlineFragment",
-        "selections": [
-          {
-            "alias": null,
-            "args": null,
-            "kind": "ScalarField",
-            "name": "slug",
-            "storageKey": null
-          }
-        ],
-        "type": "Sluggable",
-        "abstractKey": "__isSluggable"
-      },
       {
         "args": null,
         "kind": "FragmentSpread",
@@ -77,15 +83,15 @@ return {
         {
           "alias": null,
           "args": null,
-          "concreteType": "ItemContribution",
+          "concreteType": "ItemAttribution",
           "kind": "LinkedField",
-          "name": "nodes",
+          "name": "attributions",
           "plural": true,
           "selections": (v0/*: any*/),
           "storageKey": null
         }
       ],
-      "type": "ItemContributionConnection",
+      "type": "Item",
       "abstractKey": null
     },
     {
@@ -94,23 +100,23 @@ return {
         {
           "alias": null,
           "args": null,
-          "concreteType": "CollectionContribution",
+          "concreteType": "CollectionAttribution",
           "kind": "LinkedField",
-          "name": "nodes",
+          "name": "attributions",
           "plural": true,
           "selections": (v0/*: any*/),
           "storageKey": null
         }
       ],
-      "type": "CollectionContributionConnection",
+      "type": "Collection",
       "abstractKey": null
     }
   ],
-  "type": "Paginated",
-  "abstractKey": "__isPaginated"
+  "type": "AnyEntity",
+  "abstractKey": "__isAnyEntity"
 };
 })();
 
-(node as any).hash = "8c268e8430830d99abdb5a99b8b3f218";
+(node as any).hash = "dd90b22f092cc226bd14721282ef3928";
 
 export default node;

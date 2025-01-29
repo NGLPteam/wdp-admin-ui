@@ -30,7 +30,7 @@ export default function ItemContributionCreateDrawer({
       {({ data }) =>
         data?.item?.id && data?.item?.title ? (
           <Drawer
-            header={t("actions.add.contributor")}
+            header={t("actions.create.contribution")}
             dialog={dialog}
             hideOnClickOutside={false}
           >

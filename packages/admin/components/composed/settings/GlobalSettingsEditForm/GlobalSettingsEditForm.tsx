@@ -17,17 +17,21 @@ export default function GlobalSettingsEditForm({
   onSuccess,
   onCancel,
 }: Props) {
-  const { logo, ...settings } = useFragment<GlobalSettingsEditFormFragment$key>(
-    fragment,
-    data,
-  );
+  const { logo, contributionRoles, ...settings } =
+    useFragment<GlobalSettingsEditFormFragment$key>(fragment, data);
 
   const toVariables = useToVariables<GlobalSettingsEditFormMutation, Fields>(
     (data) => ({ input: { ...data } }),
     [],
   );
 
-  const defaultValues = { ...settings };
+  const defaultValues = {
+    ...settings,
+    contributionRoles: {
+      controlledVocabularyId: contributionRoles.controlledVocabulary.id,
+      defaultItemId: contributionRoles.defaultItem.id,
+    },
+  };
 
   const { t } = useTranslation();
 
@@ -72,6 +76,16 @@ export default function GlobalSettingsEditForm({
           description="forms.fields.installation_home_copy_description"
           {...register("site.installationHomePageCopy")}
         />
+        <Forms.Fieldset label={t("forms.fields.controlled_vocabularies")}>
+          <Forms.ControlledVocabularySelect
+            label="forms.fields.contribution_roles"
+            {...register("contributionRoles.controlledVocabularyId")}
+          />
+          <Forms.ContributionRoleSelect
+            label="forms.fields.default_contribution_role"
+            {...register("contributionRoles.defaultItemId")}
+          />
+        </Forms.Fieldset>
         <Forms.Select
           label="forms.fields.theme_color"
           description={t("forms.fields.theme_color_description")}
@@ -164,6 +178,21 @@ const fragment = graphql`
     logo {
       ...SiteLogoUploadFragment
     }
+    contributionRoles {
+      controlledVocabulary {
+        id
+        name
+        items {
+          id
+          label
+          unselectable
+        }
+      }
+      defaultItem {
+        id
+        label
+      }
+    }
   }
 `;
 
@@ -189,6 +218,21 @@ const mutation = graphql`
         }
         entities {
           suppressExternalLinks
+        }
+        contributionRoles {
+          controlledVocabulary {
+            id
+            name
+            items {
+              id
+              label
+              unselectable
+            }
+          }
+          defaultItem {
+            id
+            label
+          }
         }
       }
       ...MutationForm_mutationErrors

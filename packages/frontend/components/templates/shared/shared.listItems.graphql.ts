@@ -51,9 +51,12 @@ export const listItemTemplateFragment = graphql`
           }
           ...CoverImageFragment
         }
-        contributions {
-          ...ContributorsListFragment
+        contributors {
+          pageInfo {
+            totalCount
+          }
         }
+        ...ContributorsListFragment
         heroImage {
           image: large {
             webp {
@@ -76,9 +79,12 @@ export const listItemTemplateFragment = graphql`
           }
           ...CoverImageFragment
         }
-        contributions {
-          ...ContributorsListFragment
+        contributors {
+          pageInfo {
+            totalCount
+          }
         }
+        ...ContributorsListFragment
         heroImage {
           image: large {
             webp {

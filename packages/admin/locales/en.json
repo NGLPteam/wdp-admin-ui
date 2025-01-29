@@ -259,8 +259,8 @@
         "file": "Download file"
       },
       "edit": {
-        "item_contribution": "Edit Item Contributor",
-        "collection_contribution": "Edit Collection Contributor",
+        "item_contribution": "Edit Item Contribution",
+        "collection_contribution": "Edit Collection Contribution",
         "community": "Edit Community",
         "collection": "Edit Collection",
         "contributor": "Edit Contributor",
@@ -391,6 +391,7 @@
         "logo_settings_with_text": "Display with Installation Name",
         "logo_settings_without_text": "Display without Installation Name",
         "position": "Position",
+        "position_description": "List this contributor in a certain order among contributors with the same role.",
         "select_placeholder": "Select an option",
         "typeahead_placeholder": "Start typing or select an option",
         "typeahead_no_options": "No options are available",
@@ -401,7 +402,10 @@
         "initial_ordering_description": "Set which ordering should be displayed on the landing page of {{name}}.",
         "entity_settings": "Entity Settings",
         "supress_external_links": "Suppress external links",
-        "supress_external_links_description": "Hide external links in metadata."
+        "supress_external_links_description": "Hide external links in metadata.",
+        "controlled_vocabularies": "Controlled Vocabularies",
+        "contribution_roles": "Contribution Roles",
+        "default_contribution_role": "Default Role"
       },
       "validation": {
         "year": "Must be a four digit year",

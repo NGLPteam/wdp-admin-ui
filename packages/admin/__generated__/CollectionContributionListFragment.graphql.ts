@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<8f70a3484f480fd0cae1ea3f69bb12d9>>
+ * @generated SignedSource<<8176b81d4949daa647efa199caec00cc>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -16,6 +16,9 @@ export type CollectionContributionListFragment$data = {
       readonly slug: string;
       readonly title: string;
     };
+    readonly contributionRole: {
+      readonly label: string;
+    };
     readonly contributor: {
       readonly __typename: string;
       readonly familyName?: string | null | undefined;
@@ -26,7 +29,7 @@ export type CollectionContributionListFragment$data = {
     };
     readonly createdAt: string;
     readonly id: string;
-    readonly role: string | null | undefined;
+    readonly position: number | null | undefined;
     readonly slug: string;
     readonly updatedAt: string;
   }>;
@@ -114,7 +117,25 @@ return {
           "alias": null,
           "args": null,
           "kind": "ScalarField",
-          "name": "role",
+          "name": "position",
+          "storageKey": null
+        },
+        {
+          "alias": null,
+          "args": null,
+          "concreteType": "ControlledVocabularyItem",
+          "kind": "LinkedField",
+          "name": "contributionRole",
+          "plural": false,
+          "selections": [
+            {
+              "alias": null,
+              "args": null,
+              "kind": "ScalarField",
+              "name": "label",
+              "storageKey": null
+            }
+          ],
           "storageKey": null
         },
         {
@@ -238,6 +259,6 @@ return {
 };
 })();
 
-(node as any).hash = "4fb21f2b3da5a0b99866d14428a97159";
+(node as any).hash = "8c8881f6f98d99e6c7f5597deeaeed6f";
 
 export default node;

@@ -81,7 +81,17 @@ export default function ContributionCreateForm({
               }}
             />
           )}
-          <Forms.Input label="forms.fields.role" {...register("role")} />
+          <Forms.ContributionRoleSelect
+            id={contributableId}
+            label="forms.fields.role"
+            {...register("roleId")}
+          />
+          <Forms.Input
+            type="number"
+            label="forms.fields.position"
+            description="forms.fields.position_description"
+            {...register("position", { valueAsNumber: true })}
+          />
         </Forms.Grid>
       );
     },
@@ -126,10 +136,16 @@ const mutation = graphql`
     upsertContribution(input: $input) {
       contribution {
         ... on CollectionContribution {
-          role
+          contributionRole {
+            id
+            label
+          }
         }
         ... on ItemContribution {
-          role
+          contributionRole {
+            id
+            label
+          }
         }
       }
       ...MutationForm_mutationErrors

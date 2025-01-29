@@ -19,7 +19,7 @@ export default async function ItemContributorsPage({ params }: BasePageParams) {
 
   return (
     <UpdateClientEnvironment records={records}>
-      <ContributionsBlock data={item.contributions} background="neutral00" />
+      <ContributionsBlock data={item} background="neutral00" />
     </UpdateClientEnvironment>
   );
 }
@@ -27,9 +27,7 @@ export default async function ItemContributorsPage({ params }: BasePageParams) {
 const query = graphql`
   query pageTemplatesItemContributorsQuery($slug: Slug!) {
     item(slug: $slug) {
-      contributions {
-        ...ContributionsBlockFragment
-      }
+      ...ContributionsBlockFragment
     }
   }
 `;

@@ -16,6 +16,10 @@ const PositionColumn = <T extends Node>(
 
   return {
     id: "position",
+    header: "Position",
+    meta: {
+      className: "t-column-indent",
+    },
     ...(accessorKey
       ? { accessorKey }
       : { accessorFn: (originalRow: T) => get(originalRow, "position") }),
